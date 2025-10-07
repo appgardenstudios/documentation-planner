@@ -17,7 +17,6 @@ const subject = {
   questions: [
     {
       question: "What is the visibility of this repository? Select all that apply.",
-      label: "Visibility",
       attributes: [
         { name: "Internal", value: INTERNAL },
         { name: "External (public facing)", value: EXTERNAL },
@@ -25,7 +24,6 @@ const subject = {
     },
     {
       question: "What type(s) of software does this repository contain? Select all that apply.",
-      label: "Type",
       attributes: [
         { name: "Library", value: LIBRARY },
         { name: "Application", value: APPLICATION },
@@ -35,7 +33,6 @@ const subject = {
     },
     {
       question: "How is the software in this repository used? Select all that apply.",
-      label: "Usage",
       attributes: [
         { name: "Installed", value: INSTALLED },
         { name: "Deployed", value: DEPLOYED },

@@ -13,7 +13,6 @@ import team from './team.js';
 /**
  * @typedef {object} Question
  * @property {string} question - The question.
- * @property {string} label - A short label for the question.
  * @property {Array<Attribute>} attributes - The available attributes.
  */
 

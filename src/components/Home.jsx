@@ -1,15 +1,27 @@
 import { useRef, useEffect } from 'react';
 import SubjectTiles from './SubjectTiles';
-import HomeOptions from './HomeOptions';
+import Questions from './Questions';
 import Footer from './Footer';
 import Logo from '../assets/images/logo.svg';
 
+/**
+ * Home page component with subject selection and questions
+ *
+ * @typedef {import('../data/index.js').Subject} Subject
+ *
+ * @param {Object} props
+ * @param {Subject[]} props.subjects - Array of available subjects
+ * @param {Subject|null} props.selectedSubject - Currently selected subject object
+ * @param {string[]} props.selectedAttributes - Array of selected attribute values
+ * @param {(subjectName: string) => void} props.onSubjectSelect - Callback when subject is selected
+ * @param {(attributes: string[]) => void} props.onAttributesChange - Callback when attributes change
+ */
 export default function Home({
   subjects = [],
   selectedSubject = null,
-  selectedOptions = {},
+  selectedAttributes = [],
   onSubjectSelect = () => {},
-  onOptionsChange = () => {}
+  onAttributesChange = () => {}
 }) {
   const questionRef = useRef(null);
 
@@ -21,13 +33,14 @@ export default function Home({
   }, [selectedSubject]);
 
   const handlePlanClick = () => {
-    // Set the 'planned' flag to navigate to documentation page
+    // Navigate to documentation page
     const params = new URLSearchParams(window.location.search);
-    params.set('planned', 'true');
-    window.history.pushState({}, '', `?${params.toString()}`);
+    window.history.pushState({}, '', `/documentation?${params.toString()}`);
     // Trigger a re-render by dispatching popstate event
     window.dispatchEvent(new PopStateEvent('popstate'));
   };
+
+  const hasQuestions = selectedSubject?.questions && selectedSubject.questions.length > 0;
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
@@ -57,16 +70,33 @@ export default function Home({
         </div>
 
         {selectedSubject && (
-          <HomeOptions
-            subject={selectedSubject}
-            selectedOptions={selectedOptions}
-            onSelectionChange={onOptionsChange}
-            onPlanClick={handlePlanClick}
-          />
+          <div className="container max-w-2xl mx-auto mt-12 mb-16">
+            {hasQuestions && (
+              <>
+                <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+                  Please answer the following questions about the {selectedSubject.name.toLowerCase()} you are documenting.
+                </h2>
+
+                <Questions
+                  questions={selectedSubject.questions}
+                  selectedAttributes={selectedAttributes}
+                  onSelectionChange={onAttributesChange}
+                />
+              </>
+            )}
+
+            <div className="flex justify-center mt-8">
+              <button
+                onClick={handlePlanClick}
+                className="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors cursor-pointer"
+              >
+                Plan My Documentation
+              </button>
+            </div>
+          </div>
         )}
       </main>
 
-      {/* Footer */}
       <Footer />
     </div>
   );

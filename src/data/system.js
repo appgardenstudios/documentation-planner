@@ -12,7 +12,6 @@ const subject = {
   questions: [
     {
       question: "Which of the following are present in this system are present? Select all that apply.",
-      label: "Components",
       attributes: [
         { name: "User Interface (UI)", value: UI },
         { name: "Application", value: APPLICATION },

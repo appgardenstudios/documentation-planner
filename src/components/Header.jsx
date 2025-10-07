@@ -1,18 +1,21 @@
 import Logo from '../assets/images/logo.svg';
 
-export default function Header({ breadcrumb = null, sticky = false }) {
+/**
+ * Header component with logo, title, and optional breadcrumb
+ *
+ * @param {Object} props
+ * @param {string|null} props.breadcrumb - Optional breadcrumb text to display
+
+ */
+export default function Header({ breadcrumb = null }) {
   const handleHomeClick = () => {
     // Clear all query parameters and go home
     window.history.pushState({}, '', '/');
     window.dispatchEvent(new PopStateEvent('popstate'));
   };
 
-  const headerClasses = sticky
-    ? "sticky top-0 z-10 bg-white border-b border-gray-200 px-4 py-3"
-    : "p-4";
-
   return (
-    <header className={headerClasses}>
+    <header className="bg-white border-b border-gray-200 px-4 py-3">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <button
@@ -23,14 +26,10 @@ export default function Header({ breadcrumb = null, sticky = false }) {
             <img
               src={Logo}
               alt=""
-              className={sticky ? "h-5 w-5" : "h-6 w-6"}
+              className="h-5 w-5"
               aria-hidden="true"
             />
-            {sticky ? (
-              <span className="text-sm text-gray-600">Documentation Planner</span>
-            ) : (
-              <h1 className="text-lg font-semibold text-gray-900">Documentation Planner</h1>
-            )}
+            <span className="text-sm text-gray-600">Documentation Planner</span>
           </button>
           {breadcrumb && (
             <>

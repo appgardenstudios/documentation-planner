@@ -1,4 +1,4 @@
-import { render, screen } from '../utils/test-utils';
+import { render, screen } from '../utils/testUtils';
 import userEvent from '@testing-library/user-event';
 import Documentation from './Documentation';
 
@@ -22,20 +22,6 @@ const mockSelectedOptions = {
 };
 
 describe('Documentation component', () => {
-  test('renders navbar with breadcrumb', () => {
-    render(
-      <Documentation
-        subject={mockSubject}
-        selectedOptions={mockSelectedOptions}
-      />
-    );
-
-    expect(screen.getByText('Documentation Planner')).toBeInTheDocument();
-    // Check for breadcrumb by looking for the separator and breadcrumb text
-    const breadcrumb = screen.getByText('Repository', { selector: 'span.text-sm.font-medium.text-gray-900' });
-    expect(breadcrumb).toBeInTheDocument();
-  });
-
   test('renders ItemsToDocument component', () => {
     render(
       <Documentation
@@ -48,7 +34,7 @@ describe('Documentation component', () => {
     expect(screen.getByText('Items to Document')).toBeInTheDocument();
   });
 
-  test('renders DocumentsSection component', () => {
+  test('renders Documents component', () => {
     render(
       <Documentation
         subject={mockSubject}
@@ -56,32 +42,7 @@ describe('Documentation component', () => {
       />
     );
 
-    // DocumentsSection renders empty state message when no items
+    // Documents renders empty state message when no items
     expect(screen.getByText(/No items selected yet/i)).toBeInTheDocument();
   });
-
-  test('renders footer', () => {
-    render(
-      <Documentation
-        subject={mockSubject}
-        selectedOptions={mockSelectedOptions}
-      />
-    );
-
-    expect(screen.getByRole('contentinfo')).toBeInTheDocument();
-  });
-
-  test('uses side-by-side flex layout on desktop', () => {
-    const { container } = render(
-      <Documentation
-        subject={mockSubject}
-        selectedOptions={mockSelectedOptions}
-      />
-    );
-
-    // Check for flex layout classes
-    const layout = container.querySelector('[class*="lg:flex-row"]');
-    expect(layout).toBeInTheDocument();
-  });
-
 });

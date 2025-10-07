@@ -1,9 +1,108 @@
-import { useState, useEffect, useRef, useMemo } from 'react';
-import { filterItemsByAttributes, getCheckboxState } from '../utils/dataUtils';
+import { useState, useEffect, useRef } from 'react';
 
-// Separate component for items to avoid hooks issues
+/**
+ * @typedef {import('../data/index.js').Item} Item
+ */
+
+/**
+ * Get all matching item paths based on selected attributes
+ * - Items WITHOUT attributes: Always matched
+ * - Items WITH attributes: Matched only if ALL of the item's attributes are in selectedAttributes
+ *
+ * @param {Item[]} items - Tree of items
+ * @param {string[]} selectedAttributes - Array of selected attributes
+ * @returns {string[]} - Array of matching item paths
+ */
+function getMatchingItemPaths(items, selectedAttributes) {
+  const matchingPaths = [];
+
+  function traverse(items, parentPath = '') {
+    for (const item of items) {
+      const currentPath = parentPath ? `${parentPath} > ${item.name}` : item.name;
+
+      // If item has detail (leaf node), check if it matches
+      if (item.detail) {
+        const itemAttributes = item.detail.attributes || [];
+
+        // No attributes = always matches
+        // Has attributes = all must be in selectedAttributes
+        const matches = itemAttributes.length === 0 ||
+          itemAttributes.every(attr => selectedAttributes.includes(attr));
+
+        if (matches) {
+          matchingPaths.push(currentPath);
+        }
+      }
+
+      // Recursively process children
+      if (item.items && item.items.length > 0) {
+        traverse(item.items, currentPath);
+      }
+    }
+  }
+
+  traverse(items);
+  return matchingPaths;
+}
+
+/**
+ * Get checkbox state for an item
+ * - checked: all descendants are selected
+ * - unchecked: no descendants are selected
+ * - indeterminate: some descendants are selected
+ *
+ * @param {Item} item - Item to check
+ * @param {string[]} selectedPaths - Array of selected item paths
+ * @param {string} currentPath - Current path for this item
+ * @returns {'checked' | 'unchecked' | 'indeterminate'} - Checkbox state
+ */
+function getCheckboxState(item, selectedPaths, currentPath) {
+  // For leaf items (no children), just check if selected
+  if (!item.items || item.items.length === 0) {
+    return selectedPaths.includes(currentPath) ? 'checked' : 'unchecked';
+  }
+
+  // For parent items, check children states
+  const childStates = [];
+
+  function checkChildren(items, parentPath) {
+    for (const child of items) {
+      const childPath = `${parentPath} > ${child.name}`;
+
+      if (child.items && child.items.length > 0) {
+        // Recursively check children
+        checkChildren(child.items, childPath);
+      } else {
+        // Leaf item
+        childStates.push(selectedPaths.includes(childPath));
+      }
+    }
+  }
+
+  checkChildren(item.items, currentPath);
+
+  // Determine state based on children
+  if (childStates.length === 0) return 'unchecked';
+
+  const allSelected = childStates.every(state => state === true);
+  const noneSelected = childStates.every(state => state === false);
+
+  if (allSelected) return 'checked';
+  if (noneSelected) return 'unchecked';
+  return 'indeterminate';
+}
+
+/**
+ * An Item
+ *
+ * @param {Object} props
+ * @param {Item} props.item - Item to display
+ * @param {string} props.parentPath - Parent path for building full item path
+ * @param {string[]} props.selectedItems - Array of selected item paths
+ * @param {(path: string, item: Item, checked: boolean) => void} props.onCheckboxChange - Callback when checkbox changes
+ */
 function Item({ item, parentPath, selectedItems, onCheckboxChange }) {
-  const currentPath = parentPath ? `${parentPath}>${item.name}` : item.name;
+  const currentPath = parentPath ? `${parentPath} > ${item.name}` : item.name;
   const hasChildren = item.items && item.items.length > 0;
   const checkboxState = getCheckboxState(item, selectedItems, currentPath);
   const isChecked = checkboxState === 'checked';
@@ -46,58 +145,40 @@ function Item({ item, parentPath, selectedItems, onCheckboxChange }) {
   );
 }
 
+/**
+ * Component for displaying a tree of items to document with checkboxes
+ *
+ * @param {Object} props
+ * @param {Item[]} props.items - Tree of items to display
+ * @param {string[]} props.selectedItems - Array of selected item paths
+ * @param {string[]} props.selectedAttributes - Array of selected attributes
+ * @param {(items: string[]) => void} props.onSelectionChange - Callback when selection changes
+
+ */
 export default function ItemsToDocument({
   items = [],
-  selectedAttributes = [],
   selectedItems = [],
+  selectedAttributes = [],
   onSelectionChange = () => {}
 }) {
   // Track which categories are expanded
   const [expandedCategories, setExpandedCategories] = useState(new Set());
 
-  // No longer filter items - show all items
-  const filteredItems = items;
-
   // Initialize all categories as expanded when items change
   useEffect(() => {
-    const allCategories = new Set(filteredItems.map(item => item.name));
+    const allCategories = new Set(items.map(item => item.name));
     setExpandedCategories(allCategories);
-  }, [filteredItems]);
+  }, [items]);
 
-  // Auto-check items that match selectedAttributes when they change
+  // Auto-check items based on selected attributes on initial load only
   useEffect(() => {
-    if (selectedAttributes.length === 0 || selectedItems.length > 0) {
-      // Don't auto-check if no attributes selected or if user has already made selections
-      return;
-    }
-
-    const autoSelectedPaths = [];
-
-    const collectMatchingLeafPaths = (items, parentPath = '') => {
-      for (const item of items) {
-        const currentPath = parentPath ? `${parentPath}>${item.name}` : item.name;
-
-        if (item.items && item.items.length > 0) {
-          // Recursively check children
-          collectMatchingLeafPaths(item.items, currentPath);
-        } else if (item.detail) {
-          // Leaf node - check if it matches selected attributes
-          const itemAttributes = item.detail.attributes || [];
-          if (itemAttributes.length === 0 ||
-              itemAttributes.every(attr => selectedAttributes.includes(attr))) {
-            autoSelectedPaths.push(currentPath);
-          }
-        }
+    if (selectedItems.length === 0) {
+      const matchingPaths = getMatchingItemPaths(items, selectedAttributes);
+      if (matchingPaths.length > 0) {
+        onSelectionChange(matchingPaths);
       }
-    };
-
-    collectMatchingLeafPaths(items);
-
-    if (autoSelectedPaths.length > 0) {
-      onSelectionChange(autoSelectedPaths);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedAttributes]);
+  }, []);
 
   const toggleCategory = (categoryName) => {
     setExpandedCategories(prev => {
@@ -118,7 +199,7 @@ export default function ItemsToDocument({
 
       const collectLeafPaths = (items, parentPath) => {
         for (const child of items) {
-          const childPath = `${parentPath}>${child.name}`;
+          const childPath = `${parentPath} > ${child.name}`;
           if (child.items && child.items.length > 0) {
             collectLeafPaths(child.items, childPath);
           } else if (child.detail) {
@@ -150,7 +231,7 @@ export default function ItemsToDocument({
 
   return (
     <div className="space-y-2">
-      {filteredItems.map((category) => {
+      {items.map((category) => {
         const isExpanded = expandedCategories.has(category.name);
 
         return (

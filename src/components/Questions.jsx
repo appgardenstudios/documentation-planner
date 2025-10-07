@@ -1,26 +1,29 @@
 /**
  * Reusable component for rendering questions with checkbox options
- * Used in both HomeOptions and DocumentationOptions modal
+ *
+ * @typedef {import('../data/index.js').Question} Question
+ *
+ * @param {Object} props
+ * @param {Question[]} props.questions - Array of question objects with attributes
+ * @param {string[]} props.selectedAttributes - Array of selected attribute values
+ * @param {(attributes: string[]) => void} props.onSelectionChange - Callback when selection changes
+
  */
-export default function QuestionOptions({
+export default function Questions({
   questions,
-  selectedOptions = {},
+  selectedAttributes = [],
   onSelectionChange = () => {}
 }) {
-  const handleCheckboxChange = (questionText, attributeValue, isChecked) => {
-    const currentValues = selectedOptions[questionText] || [];
-    let newValues;
+  const handleCheckboxChange = (attributeValue, isChecked) => {
+    let newAttributes;
 
     if (isChecked) {
-      newValues = [...currentValues, attributeValue];
+      newAttributes = [...selectedAttributes, attributeValue];
     } else {
-      newValues = currentValues.filter(v => v !== attributeValue);
+      newAttributes = selectedAttributes.filter(v => v !== attributeValue);
     }
 
-    onSelectionChange({
-      ...selectedOptions,
-      [questionText]: newValues
-    });
+    onSelectionChange(newAttributes);
   };
 
   return (
@@ -33,7 +36,7 @@ export default function QuestionOptions({
 
           <div className="space-y-2">
             {question.attributes.map((attribute, aIndex) => {
-              const isChecked = selectedOptions[question.question]?.includes(attribute.value) || false;
+              const isChecked = selectedAttributes.includes(attribute.value);
 
               return (
                 <label
@@ -43,7 +46,7 @@ export default function QuestionOptions({
                   <input
                     type="checkbox"
                     checked={isChecked}
-                    onChange={(e) => handleCheckboxChange(question.question, attribute.value, e.target.checked)}
+                    onChange={(e) => handleCheckboxChange(attribute.value, e.target.checked)}
                     className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                   />
                   <span className="text-gray-700">{attribute.name}</span>

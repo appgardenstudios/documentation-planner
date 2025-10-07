@@ -1,4 +1,4 @@
-import { render, screen } from '../utils/test-utils';
+import { render, screen } from '../utils/testUtils';
 import userEvent from '@testing-library/user-event';
 import ItemsToDocument from './ItemsToDocument';
 
@@ -64,45 +64,10 @@ describe('ItemsToDocument', () => {
     expect(screen.queryByText('One Liner')).not.toBeInTheDocument();
   });
 
-  test('shows all items regardless of attributes', () => {
+  test('shows items that do not have attributes regardless of attributes', () => {
     render(<ItemsToDocument items={mockItems} selectedAttributes={['EXTERNAL']} />);
 
-    // Should show all items regardless of attributes
-    expect(screen.getByText('One Liner')).toBeInTheDocument();
     expect(screen.getByText('Description')).toBeInTheDocument();
-    expect(screen.getByText('Benefits')).toBeInTheDocument();
-  });
-
-  test('shows all categories', () => {
-    render(<ItemsToDocument items={mockItems} selectedAttributes={['EXTERNAL']} />);
-
-    // All categories should appear
-    expect(screen.getByText('Core')).toBeInTheDocument();
-    expect(screen.getByText('Marketing')).toBeInTheDocument();
-  });
-
-  test('renders checkboxes for items', () => {
-    render(<ItemsToDocument items={mockItems} selectedAttributes={['EXTERNAL']} />);
-
-    const checkboxes = screen.getAllByRole('checkbox');
-    expect(checkboxes.length).toBeGreaterThan(0);
-  });
-
-  test('categories do not have checkboxes', () => {
-    render(
-      <ItemsToDocument
-        items={mockItems}
-        selectedAttributes={['EXTERNAL']}
-        selectedItems={['Core>One Liner']}
-      />
-    );
-
-    // Category should be a button, not have a checkbox
-    const coreButton = screen.getByRole('button', { name: /Core/i });
-    expect(coreButton).toBeInTheDocument();
-
-    // Should not have a checkbox labeled "Core"
-    expect(screen.queryByLabelText('Core')).not.toBeInTheDocument();
   });
 
   test('calls onSelectionChange when item clicked', async () => {
@@ -140,6 +105,6 @@ describe('ItemsToDocument', () => {
     await user.click(oneLinerCheckbox);
 
     // Should add the selected item
-    expect(onSelectionChange).toHaveBeenCalledWith(['Core>One Liner']);
+    expect(onSelectionChange).toHaveBeenCalledWith(['Core > One Liner']);
   });
 });

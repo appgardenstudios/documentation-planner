@@ -12,7 +12,7 @@ describe('useUrlState', () => {
       const { result } = renderHook(() => useUrlState());
 
       expect(result.current.subject).toBeNull();
-      expect(result.current.selectedOptions).toEqual({});
+      expect(result.current.selectedAttributes).toEqual([]);
       expect(result.current.selectedItems).toEqual([]);
     });
 
@@ -23,21 +23,18 @@ describe('useUrlState', () => {
       expect(result.current.subject).toBe('repo');
     });
 
-    test('parses selected options from query params', () => {
-      window.history.pushState({}, '', '?subject=repo&visibility=["Internal","External"]&type=["Library"]');
+    test('parses selected attributes from query params', () => {
+      window.history.pushState({}, '', '?subject=repo&attributes=["INTERNAL","EXTERNAL","LIBRARY"]');
       const { result } = renderHook(() => useUrlState());
 
-      expect(result.current.selectedOptions).toEqual({
-        visibility: ['Internal', 'External'],
-        type: ['Library']
-      });
+      expect(result.current.selectedAttributes).toEqual(['INTERNAL', 'EXTERNAL', 'LIBRARY']);
     });
 
     test('parses selected items from query param', () => {
-      window.history.pushState({}, '', '?subject=repo&items=["Core>OneLiner","Marketing>Benefits"]');
+      window.history.pushState({}, '', '?subject=repo&items=["Core > OneLiner","Marketing>Benefits"]');
       const { result } = renderHook(() => useUrlState());
 
-      expect(result.current.selectedItems).toEqual(['Core>OneLiner', 'Marketing>Benefits']);
+      expect(result.current.selectedItems).toEqual(['Core > OneLiner', 'Marketing>Benefits']);
     });
 
     test('handles malformed JSON gracefully', () => {
@@ -59,16 +56,16 @@ describe('useUrlState', () => {
       expect(window.location.search).toContain('subject=system');
     });
 
-    test('updates selected options in URL', () => {
+    test('updates selected attributes in URL', () => {
       window.history.pushState({}, '', '?subject=repo');
       const { result } = renderHook(() => useUrlState());
 
       act(() => {
-        result.current.setSelectedOptions({ visibility: ['Internal'] });
+        result.current.setSelectedAttributes(['INTERNAL']);
       });
 
       const params = new URLSearchParams(window.location.search);
-      expect(params.get('visibility')).toBe('["Internal"]');
+      expect(params.get('attributes')).toBe('["INTERNAL"]');
     });
 
     test('updates selected items in URL', () => {
@@ -76,11 +73,11 @@ describe('useUrlState', () => {
       const { result } = renderHook(() => useUrlState());
 
       act(() => {
-        result.current.setSelectedItems(['Core>OneLiner']);
+        result.current.setSelectedItems(['Core > OneLiner']);
       });
 
       const params = new URLSearchParams(window.location.search);
-      expect(params.get('items')).toBe('["Core>OneLiner"]');
+      expect(params.get('items')).toBe('["Core > OneLiner"]');
     });
 
     test('clears subject when set to null', () => {
@@ -97,19 +94,20 @@ describe('useUrlState', () => {
   });
 
   describe('initial route determination', () => {
-    test('determines home route when no subject', () => {
+    test('determines home route for root path', () => {
+      window.history.pushState({}, '', '/');
       const { result } = renderHook(() => useUrlState());
       expect(result.current.route).toBe('home');
     });
 
-    test('determines home route when subject is present but not planned', () => {
-      window.history.pushState({}, '', '?subject=repo');
+    test('determines home route for root path with query params', () => {
+      window.history.pushState({}, '', '/?subject=repo');
       const { result } = renderHook(() => useUrlState());
       expect(result.current.route).toBe('home');
     });
 
-    test('determines documentation route when subject is present and planned=true', () => {
-      window.history.pushState({}, '', '?subject=repo&planned=true');
+    test('determines documentation route for /documentation path', () => {
+      window.history.pushState({}, '', '/documentation?subject=repo');
       const { result } = renderHook(() => useUrlState());
       expect(result.current.route).toBe('documentation');
     });

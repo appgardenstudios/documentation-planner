@@ -1,3 +1,14 @@
+/**
+ * Component for displaying selectable subject tiles
+ *
+ * @typedef {import('../data/index.js').Subject} Subject
+ *
+ * @param {Object} props
+ * @param {Subject[]} props.subjects - Array of subject objects with name and icon
+ * @param {string|null} props.selectedSubject - Name of currently selected subject
+ * @param {(subjectName: string) => void} props.onSelect - Callback when subject is selected
+
+ */
 export default function SubjectTiles({ subjects = [], selectedSubject = null, onSelect = () => {} }) {
   if (!subjects || subjects.length === 0) {
     return null;

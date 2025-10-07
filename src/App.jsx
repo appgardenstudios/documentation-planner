@@ -3,15 +3,32 @@ import useUrlState from './hooks/useUrlState';
 import subjects from './data';
 import Home from './components/Home';
 import Documentation from './components/Documentation';
-import { getSubjectByName } from './utils/dataUtils';
 
+/**
+ * Get a subject by its name (case-insensitive)
+ * @param {import('./data/index.js').Subject[]} subjects - Array of subject objects
+ * @param {string} name - Name to search for
+ * @returns {import('./data/index.js').Subject|null} - Subject object or null if not found
+ */
+function getSubjectByName(subjects, name) {
+  if (!subjects || !name) return null;
+
+  const lowerName = name.toLowerCase();
+  return subjects.find(
+    subject => subject.name.toLowerCase() === lowerName
+  ) || null;
+}
+
+/**
+ * Root application component that handles routing and state management
+ */
 export default function App() {
   const {
     subject: subjectName,
-    selectedOptions,
+    selectedAttributes,
     selectedItems,
     setSubject,
-    setSelectedOptions,
+    setSelectedAttributes,
     setSelectedItems,
     route
   } = useUrlState();
@@ -29,12 +46,12 @@ export default function App() {
 
   const handleSubjectSelect = (subjectName) => {
     setSubject(subjectName);
-    setSelectedOptions({});
+    setSelectedAttributes([]);
     setSelectedItems([]);
   };
 
-  const handleOptionsChange = (options) => {
-    setSelectedOptions(options);
+  const handleAttributesChange = (attributes) => {
+    setSelectedAttributes(attributes);
   };
 
   const handleItemsChange = (items) => {
@@ -45,7 +62,7 @@ export default function App() {
     return (
       <Documentation
         subject={currentSubject}
-        selectedOptions={selectedOptions}
+        selectedAttributes={selectedAttributes}
         selectedItems={selectedItems}
         onItemsChange={handleItemsChange}
       />
@@ -56,9 +73,9 @@ export default function App() {
     <Home
       subjects={subjects}
       selectedSubject={currentSubject}
-      selectedOptions={selectedOptions}
+      selectedAttributes={selectedAttributes}
       onSubjectSelect={handleSubjectSelect}
-      onOptionsChange={handleOptionsChange}
+      onAttributesChange={handleAttributesChange}
     />
   );
 }
