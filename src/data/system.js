@@ -1,6 +1,5 @@
 const ATTR_UI = "UI";
 const ATTR_API = "API";
-const ATTR_INFRASTRUCTURE = "Infrastructure";
 
 const DOC_SYSTEM = "DOC_SYSTEM";
 const DOC_REQUIREMENTS = "DOC_REQUIREMENTS";
@@ -21,7 +20,6 @@ const subject = {
       attributes: [
         { name: "User Interface (UI)", value: ATTR_UI },
         { name: "Callable API (e.g. HTTP, REST)", value: ATTR_API },
-        { name: "Infrastructure", value: ATTR_INFRASTRUCTURE },
       ],
     },
   ],
