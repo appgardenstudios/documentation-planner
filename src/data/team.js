@@ -1,11 +1,31 @@
+const DOC_TEAM = "TEAM";
+const DOC_INTERNALS = "INTERNALS";
+const DOC_SOFTWARE_DEVELOPMENT = "SOFTWARE_DEVELOPMENT";
+const DOC_ENGINEERING = "ENGINEERING";
+const DOC_TESTING = "TESTING";
+const DOC_RELEASING_AND_DEPLOYMENT = "RELEASING_AND_DEPLOYMENT";
+const DOC_OPERATIONS = "OPERATIONS";
+const DOC_ONBOARDING = "ONBOARDING";
+const DOC_OFFBOARDING = "OFFBOARDING";
+
 /**
  * @type {import(".").Subject}
  */
-
 const subject = {
   name: "Team",
   icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXVzZXJzLWljb24gbHVjaWRlLXVzZXJzIj48cGF0aCBkPSJNMTYgMjF2LTJhNCA0IDAgMCAwLTQtNEg2YTQgNCAwIDAgMC00IDR2MiIvPjxwYXRoIGQ9Ik0xNiAzLjEyOGE0IDQgMCAwIDEgMCA3Ljc0NCIvPjxwYXRoIGQ9Ik0yMiAyMXYtMmE0IDQgMCAwIDAtMy0zLjg3Ii8+PGNpcmNsZSBjeD0iOSIgY3k9IjciIHI9IjQiLz48L3N2Zz4=",
   questions: [],
+  documents: [
+    {name: DOC_TEAM},
+    {name: DOC_INTERNALS},
+    {name: DOC_SOFTWARE_DEVELOPMENT},
+    {name: DOC_ENGINEERING},
+    {name: DOC_TESTING},
+    {name: DOC_RELEASING_AND_DEPLOYMENT},
+    {name: DOC_OPERATIONS},
+    {name: DOC_ONBOARDING},
+    {name: DOC_OFFBOARDING},
+  ],
   items: [
     {
       name: "Core",
@@ -15,7 +35,7 @@ const subject = {
           detail: {
             purpose: "Describe this team in one or two sentences in tagline format.",
             instructions: "REPLACE ME with a tagline describing this team.",
-            document: "TEAM_OVERVIEW",
+            document: DOC_TEAM,
             section: "Team Name",
           },
         },
@@ -24,7 +44,7 @@ const subject = {
           detail: {
             purpose: "Describe the capabilities of this team.",
             instructions: "REPLACE ME with a description of the capabilities of this team. Include information as to the available skill sets, languages, specialties, etc.",
-            document: "TEAM_OVERVIEW",
+            document: DOC_TEAM,
             section: "Team Name#Capabilities",
           },
         },
@@ -33,7 +53,7 @@ const subject = {
           detail: {
             purpose: "List the responsibilities of this team.",
             instructions: "REPLACE ME with a list if the responsibilities of this team. List and link to applicable systems, products, teams, etc.",
-            document: "TEAM_OVERVIEW",
+            document: DOC_TEAM,
             section: "Team Name#Responsibilities",
           },
         },
@@ -42,7 +62,7 @@ const subject = {
           detail: {
             purpose: "List the team's leadership.",
             instructions: "REPLACE ME with a list if the team's leadership. Include position, title, name, timezone, contact information, etc.",
-            document: "TEAM_OVERVIEW",
+            document: DOC_TEAM,
             section: "Team Name#Leadership",
           },
         },
@@ -51,7 +71,7 @@ const subject = {
           detail: {
             purpose: "List the team's membership.",
             instructions: "REPLACE ME with a list if the team's membership. Include position, title, name, timezone, contact information, etc.",
-            document: "TEAM_OVERVIEW",
+            document: DOC_TEAM,
             section: "Team Name#Membership",
           },
         },
@@ -60,7 +80,7 @@ const subject = {
           detail: {
             purpose: "List the team's stakeholders.",
             instructions: "REPLACE ME with a list if the team's stakeholders. Include position, title, name, timezone, contact information, reason they are a stakeholder, focus, etc.",
-            document: "TEAM_OVERVIEW",
+            document: DOC_TEAM,
             section: "Team Name#Membership",
           },
         },
@@ -69,7 +89,7 @@ const subject = {
           detail: {
             purpose: "List the projects assigned to this team.",
             instructions: "REPLACE ME with a list if the projects assigned to this team, including any schedules and updates.",
-            document: "TEAM_OVERVIEW",
+            document: DOC_TEAM,
             section: "Team Name#Projects",
           },
         },
@@ -78,7 +98,7 @@ const subject = {
           detail: {
             purpose: "List relevant team links.",
             instructions: "REPLACE ME with a list of links applicable to the team. Include links to team systems, products, repositories, project management software, specifications, decisions, meeting notes, calendar(s), etc.",
-            document: "TEAM_OVERVIEW",
+            document: DOC_TEAM,
             section: "Team Name#Membership",
           },
         },
@@ -92,7 +112,7 @@ const subject = {
           detail: {
             purpose: "List the roles available on this team.",
             instructions: "REPLACE ME with a list if the roles available on this team.",
-            document: "TEAM",
+            document: DOC_INTERNALS,
             section: "Team Name#Roles",
           },
         },
@@ -101,7 +121,7 @@ const subject = {
           detail: {
             purpose: "List the responsibilities available on this team.",
             instructions: "REPLACE ME with a list if the responsibilities available on this team, including what role(s) fill those responsibilities.",
-            document: "TEAM",
+            document: DOC_INTERNALS,
             section: "Team Name#Responsibilities",
           },
         },
@@ -110,7 +130,7 @@ const subject = {
           detail: {
             purpose: "List the links to meeting notes.",
             instructions: "REPLACE ME with a list of links to meeting notes.",
-            document: "TEAM",
+            document: DOC_INTERNALS,
             section: "Team Name#Meeting Notes",
           },
         },
@@ -119,7 +139,7 @@ const subject = {
           detail: {
             purpose: "List the links to retrospective highlights.",
             instructions: "REPLACE ME with a list of links to retrospective highlights.",
-            document: "TEAM",
+            document: DOC_INTERNALS,
             section: "Team Name#Retrospective Highlights",
           },
         },
@@ -131,8 +151,8 @@ const subject = {
               detail: {
                 purpose: "Describe the plan to communicate with stakeholders.",
                 instructions: "REPLACE ME with a description of the plan to communicate with stakeholders. Include information such as the frequency, format, type of information shared, rules, restrictions, authorized communicators and communication channels, etc.",
-                document: "TEAM",
-                section: "Team Name#Communication#Stakeholders",
+                document: DOC_INTERNALS,
+                section: "Team Name#Communication Plan#Stakeholders",
               },
             },
             {
@@ -140,8 +160,8 @@ const subject = {
               detail: {
                 purpose: "Describe the plan to communicate with leadership.",
                 instructions: "REPLACE ME with a description of the plan to communicate with leadership. Include information such as the frequency, format, type of information shared, rules, restrictions, authorized communicators and communication channels, etc.",
-                document: "TEAM",
-                section: "Team Name#Communication#Leadership",
+                document: DOC_INTERNALS,
+                section: "Team Name#Communication Plan#Leadership",
               },
             },
             {
@@ -149,8 +169,8 @@ const subject = {
               detail: {
                 purpose: "Describe the plan to communicate with customers.",
                 instructions: "REPLACE ME with a description of the plan to communicate with customers. Include information such as the frequency, format, type of information shared, rules, restrictions, authorized communicators and communication channels, etc.",
-                document: "TEAM",
-                section: "Team Name#Communication#Customers",
+                document: DOC_INTERNALS,
+                section: "Team Name#Communication Plan#Customers",
               },
             },
             {
@@ -158,8 +178,8 @@ const subject = {
               detail: {
                 purpose: "Describe the plan to communicate with support.",
                 instructions: "REPLACE ME with a description of the plan to communicate with support. Include information such as the frequency, format, type of information shared, rules, restrictions, authorized communicators and communication channels, etc.",
-                document: "TEAM",
-                section: "Team Name#Communication#Support",
+                document: DOC_INTERNALS,
+                section: "Team Name#Communication Plan#Support",
               },
             },
             {
@@ -167,8 +187,8 @@ const subject = {
               detail: {
                 purpose: "Describe the plan to communicate with marketing.",
                 instructions: "REPLACE ME with a description of the plan to communicate with marketing. Include information such as the frequency, format, type of information shared, rules, restrictions, authorized communicators and communication channels, etc.",
-                document: "TEAM",
-                section: "Team Name#Communication#Marketing",
+                document: DOC_INTERNALS,
+                section: "Team Name#Communication Plan#Marketing",
               },
             },
           ]
@@ -183,7 +203,7 @@ const subject = {
           detail: {
             purpose: "Describe the software development process.",
             instructions: "REPLACE ME with a description of the software development process that this team uses. Include information about how software is developed, tickets created, controls implemented, etc.",
-            document: "SOFTWARE_DEVELOPMENT",
+            document: DOC_SOFTWARE_DEVELOPMENT,
             section: "Team Name#Process",
           },
         },
@@ -192,7 +212,7 @@ const subject = {
           detail: {
             purpose: "Describe and link to the project management software that is used.",
             instructions: "REPLACE ME with a description of and link to the project management software used in the software development process.",
-            document: "SOFTWARE_DEVELOPMENT",
+            document: DOC_SOFTWARE_DEVELOPMENT,
             section: "Team Name#Project Management",
           },
         },
@@ -201,7 +221,7 @@ const subject = {
           detail: {
             purpose: "List and describe investigation implementation ticket requirements.",
             instructions: "REPLACE ME with a list and description of any investigation ticket (e.g. spikes) requirements. This can include process, scope, documentation, or other requirements.",
-            document: "SOFTWARE_DEVELOPMENT",
+            document: DOC_SOFTWARE_DEVELOPMENT,
             section: "Team Name#Investigation Ticket Requirements",
           },
         },
@@ -210,7 +230,7 @@ const subject = {
           detail: {
             purpose: "List and describe bug fix ticket requirements.",
             instructions: "REPLACE ME with a list and description of any bug fix ticket requirements. This can include items that must be addressed prior to a ticket being ready, reproduction steps, standing requirements, etc.",
-            document: "SOFTWARE_DEVELOPMENT",
+            document: DOC_SOFTWARE_DEVELOPMENT,
             section: "Team Name#Bug Fix Ticket Requirements",
           },
         },
@@ -219,7 +239,7 @@ const subject = {
           detail: {
             purpose: "List and describe implementation ticket requirements.",
             instructions: "REPLACE ME with a list and description of any implementation ticket (e.g. story) requirements. This can include items that must be addressed prior to a ticket being ready, standing requirements, etc.",
-            document: "SOFTWARE_DEVELOPMENT",
+            document: DOC_SOFTWARE_DEVELOPMENT,
             section: "Team Name#Implementation Ticket Requirements",
           },
         },
@@ -228,7 +248,7 @@ const subject = {
           detail: {
             purpose: "Define when a ticket is ready to be worked.",
             instructions: "REPLACE ME with a definition of when a ticket is ready to be worked. This can include elements like describing information or fields that must be present, processes that must be followed, reviews that must be complete, etc.",
-            document: "SOFTWARE_DEVELOPMENT",
+            document: DOC_SOFTWARE_DEVELOPMENT,
             section: "Team Name#Definition of Ready",
           },
         },
@@ -237,7 +257,7 @@ const subject = {
           detail: {
             purpose: "Define when a ticket is considered complete.",
             instructions: "REPLACE ME with a definition of when a ticket is considered complete. This can include elements like describing processes that must have occurred, verification or validation that must be completed, communications that must be sent, etc.",
-            document: "SOFTWARE_DEVELOPMENT",
+            document: DOC_SOFTWARE_DEVELOPMENT,
             section: "Team Name#Definition of Done",
           },
         },
@@ -251,7 +271,7 @@ const subject = {
           detail: {
             purpose: "Describe the code style that this team adheres to.",
             instructions: "REPLACE ME with a description of the code style(s) that this team adheres to.",
-            document: "ENGINEERING",
+            document: DOC_ENGINEERING,
             section: "Team Name#Code Style Guide",
           },
         },
@@ -260,7 +280,7 @@ const subject = {
           detail: {
             purpose: "Describe the code standards that this team adheres to.",
             instructions: "REPLACE ME with a description of the code standard(s) that this team adheres to.",
-            document: "ENGINEERING",
+            document: DOC_ENGINEERING,
             section: "Team Name#Code Standards",
           },
         },
@@ -269,7 +289,7 @@ const subject = {
           detail: {
             purpose: "Describe the planning agreement that this team adheres to.",
             instructions: "REPLACE ME with a description of the planning agreement that this team adheres to. Include items such as required issue fields, what technical decisions require review (and by whom) prior to implementation, what and how to document a spike or investigation ticket, etc.",
-            document: "ENGINEERING",
+            document: DOC_ENGINEERING,
             section: "Team Name#Planning Agreement",
           },
         },
@@ -278,7 +298,7 @@ const subject = {
           detail: {
             purpose: "Describe the pull request agreement that this team adheres to.",
             instructions: "REPLACE ME with a description of the pull request agreement that this team adheres to. Include items such as required pull request description fields, pre-review expectations, testing expectations, review turn around timelines, etc.",
-            document: "ENGINEERING",
+            document: DOC_ENGINEERING,
             section: "Team Name#Pull Request Agreement",
           },
         },
@@ -292,7 +312,7 @@ const subject = {
           detail: {
             purpose: "Describe the testing strategy that this team adheres to.",
             instructions: "REPLACE ME with a description of or link to the testing strategy that this team adheres to.",
-            document: "TESTING",
+            document: DOC_TESTING,
             section: "Team Name#Strategy",
           },
         },
@@ -301,7 +321,7 @@ const subject = {
           detail: {
             purpose: "Describe the testing plan(s) that this team uses.",
             instructions: "REPLACE ME with a description of or link to the testing plan(s) that this team uses.",
-            document: "TESTING",
+            document: DOC_TESTING,
             section: "Team Name#Plan",
           },
         },
@@ -310,7 +330,7 @@ const subject = {
           detail: {
             purpose: "List or link to the test cases managed by this team.",
             instructions: "REPLACE ME with a list or link to the test cases managed by this team.",
-            document: "TESTING",
+            document: DOC_TESTING,
             section: "Team Name#Plan",
           },
         },
@@ -320,11 +340,20 @@ const subject = {
       name: "Releasing and Deployment",
       items: [
         {
+          name: "Release Calendar",
+          detail: {
+            purpose: "List the previous and upcoming releases.",
+            instructions: "REPLACE ME with a list of previous and upcoming releases, preferably in a calendar format.",
+            document: DOC_RELEASING_AND_DEPLOYMENT,
+            section: "Team Name#Calendar",
+          },
+        },
+        {
           name: "Release Checklist",
           detail: {
             purpose: "List the steps to follow to release.",
             instructions: "REPLACE ME with a list of steps needed to release. Provide links to product and/or system release documentation.",
-            document: "RELEASING_AND_DEPLOYMENT",
+            document: DOC_RELEASING_AND_DEPLOYMENT,
             section: "Team Name#Release",
           },
         },
@@ -333,7 +362,7 @@ const subject = {
           detail: {
             purpose: "List the steps to follow to deploy.",
             instructions: "REPLACE ME with a list of steps needed to deploy. Provide links to product and/or system deployment documentation.",
-            document: "RELEASING_AND_DEPLOYMENT",
+            document: DOC_RELEASING_AND_DEPLOYMENT,
             section: "Team Name#Deploy",
           },
         },
@@ -342,7 +371,7 @@ const subject = {
           detail: {
             purpose: "List the steps to follow to roll back.",
             instructions: "REPLACE ME with a list of steps needed to roll back. Provide links to product and/or system roll back documentation.",
-            document: "RELEASING_AND_DEPLOYMENT",
+            document: DOC_RELEASING_AND_DEPLOYMENT,
             section: "Team Name#Rollback",
           },
         },
@@ -356,7 +385,7 @@ const subject = {
           detail: {
             purpose: "List or link to the on-call information and schedule.",
             instructions: "REPLACE ME with a list or link to the on-call information and schedule.",
-            document: "RELEASING_AND_DEPLOYMENT",
+            document: DOC_OPERATIONS,
             section: "Team Name#On Call",
           },
         },
@@ -368,7 +397,7 @@ const subject = {
               detail: {
                 purpose: "Link to or detail the incident response plan.",
                 instructions: "REPLACE ME with a link to or detail the incident response plan.",
-                document: "OPERATIONS",
+                document: DOC_OPERATIONS,
                 section: "Team Name#Incident Response Plan",
               },
             },
@@ -377,7 +406,7 @@ const subject = {
               detail: {
                 purpose: "List the steps to follow in case of an incident.",
                 instructions: "REPLACE ME with a list of steps to follow in case of an incident.",
-                document: "RELEASING_AND_DEPLOYMENT",
+                document: DOC_OPERATIONS,
                 section: "Team Name#Incident Response Checklist",
               },
             },
@@ -388,7 +417,7 @@ const subject = {
           detail: {
             purpose: "Describe the process for submitting and handling bugs or other issues.",
             instructions: "REPLACE ME with a description of the process for submitting and handling bugs or other issues.",
-            document: "RELEASING_AND_DEPLOYMENT",
+            document: DOC_OPERATIONS,
             section: "Team Name#Bugs and Issues",
           },
         },
@@ -397,7 +426,7 @@ const subject = {
           detail: {
             purpose: "List out and link to runbooks used by this team.",
             instructions: "REPLACE ME with a list of runbooks and the links to each of them.",
-            document: "RELEASING_AND_DEPLOYMENT",
+            document: DOC_OPERATIONS,
             section: "Team Name#Runbooks",
           },
         },
@@ -406,7 +435,7 @@ const subject = {
           detail: {
             purpose: "List out and link to monitoring systems used by the team.",
             instructions: "REPLACE ME with a list of monitoring systems and the links to each of them. This should end up pointing to the system monitoring information for the systems that this team is in charge of.",
-            document: "RELEASING_AND_DEPLOYMENT",
+            document: DOC_OPERATIONS,
             section: "Team Name#Monitoring",
           },
         },
@@ -415,7 +444,7 @@ const subject = {
           detail: {
             purpose: "List out and link to alerting systems used by the team.",
             instructions: "REPLACE ME with a list of alerting systems and the links to each of them. This should end up pointing to the system alerting information for the systems that this team is in charge of.",
-            document: "RELEASING_AND_DEPLOYMENT",
+            document: DOC_OPERATIONS,
             section: "Team Name#Alerting",
           },
         },
@@ -424,7 +453,7 @@ const subject = {
           detail: {
             purpose: "Describe or link to the process for accessing systems managed by this team.",
             instructions: "REPLACE ME with a description or link to the process for accessing systems managed by this team.",
-            document: "RELEASING_AND_DEPLOYMENT",
+            document: DOC_OPERATIONS,
             section: "Team Name#System Access",
           },
         },
@@ -433,7 +462,7 @@ const subject = {
           detail: {
             purpose: "Describe the process for managing feature flags.",
             instructions: "REPLACE ME with a description of the process for managing feature flags. Include information on and the process for how to create them, enable/disable them, etc. Also include a link to the feature flag system.",
-            document: "RELEASING_AND_DEPLOYMENT",
+            document: DOC_OPERATIONS,
             section: "Team Name#Feature Flags",
           },
         },
@@ -442,7 +471,7 @@ const subject = {
           detail: {
             purpose: "Describe or link to the process for handling disaster recovery.",
             instructions: "REPLACE ME with a description of or link to the process for handling disaster recovery.",
-            document: "RELEASING_AND_DEPLOYMENT",
+            document: DOC_OPERATIONS,
             section: "Team Name#Disaster Recovery",
           },
         },
@@ -451,7 +480,7 @@ const subject = {
           detail: {
             purpose: "Describe or link to the maintenance procedures for systems and/or products managed by this team.",
             instructions: "REPLACE ME with a description of or link to the maintenance procedures for systems and/or products managed by this team.",
-            document: "RELEASING_AND_DEPLOYMENT",
+            document: DOC_OPERATIONS,
             section: "Team Name#Maintenance",
           },
         },
@@ -468,7 +497,7 @@ const subject = {
               detail: {
                 purpose: "List tasks that must be completed prior to, when, and after adding a new person to the team.",
                 instructions: "REPLACE ME with a list of tasks that must be completed prior to, when, and after adding a new person to the team.",
-                document: "ONBOARDING",
+                document: DOC_ONBOARDING,
                 section: "Team Name#Checklist",
               },
             },
@@ -477,7 +506,7 @@ const subject = {
               detail: {
                 purpose: "Describe how to setup the local environment for a team member.",
                 instructions: "REPLACE ME with a description of how to setup the local environment for a team member.",
-                document: "ONBOARDING",
+                document: DOC_ONBOARDING,
                 section: "Team Name#Local Env Setup",
               },
             },
@@ -486,7 +515,7 @@ const subject = {
               detail: {
                 purpose: "Describe how to get access to and setup the tools used by the team.",
                 instructions: "REPLACE ME with a description of how to get access to and setup the tools used by the team.",
-                document: "ONBOARDING",
+                document: DOC_ONBOARDING,
                 section: "Team Name#Tools",
               },
             },
@@ -495,7 +524,7 @@ const subject = {
               detail: {
                 purpose: "Describe how to get access to the products used by the team.",
                 instructions: "REPLACE ME with a description of how to get access to the products used by the team.",
-                document: "ONBOARDING",
+                document: DOC_ONBOARDING,
                 section: "Team Name#Products",
               },
             },
@@ -504,7 +533,7 @@ const subject = {
               detail: {
                 purpose: "Describe how to get access to the systems used by the team.",
                 instructions: "REPLACE ME with a description of how to get access to the systems used by the team.",
-                document: "ONBOARDING",
+                document: DOC_ONBOARDING,
                 section: "Team Name#Systems",
               },
             },
@@ -518,7 +547,7 @@ const subject = {
               detail: {
                 purpose: "List tasks that must be completed prior to, when, and after removing a new person to the team.",
                 instructions: "REPLACE ME with a list of tasks that must be completed prior to, when, and after removing a new person to the team.",
-                document: "Offboarding",
+                document: DOC_OFFBOARDING,
                 section: "Team Name#Checklist",
               },
             },

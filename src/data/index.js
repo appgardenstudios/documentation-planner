@@ -7,6 +7,7 @@ import team from './team.js';
  * @property {string} name - The name of the subject.
  * @property {string} icon - A base64 encoded SVG icon representing the subject.
  * @property {Array<Question>} questions - Questions to help select the applicable attributes.
+ * @property {Array<Document>} documents - A list of documents.
  * @property {Array<Item>} items - A list of items.
  */
 
@@ -20,6 +21,11 @@ import team from './team.js';
  * @typedef {object} Attribute
  * @property {string} name - The attribute's name.
  * @property {string} value - The attribute's value.
+ */
+
+/**
+ * @typedef {object} Document
+ * @property {string} name - The name of the document.
  */
 
 /**
