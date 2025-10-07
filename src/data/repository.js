@@ -13,10 +13,11 @@ const CALLED = "Called"
  */
 const subject = {
   name: "Repository",
-  icon: "<replace-with-base64-encoded-icon-of-repo>",
+  icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWZvbGRlci1naXQyLWljb24gbHVjaWRlLWZvbGRlci1naXQtMiI+PHBhdGggZD0iTTkgMjBINGEyIDIgMCAwIDEtMi0yVjVhMiAyIDAgMCAxIDItMmgzLjlhMiAyIDAgMCAxIDEuNjkuOWwuODEgMS4yYTIgMiAwIDAgMCAxLjY3LjlIMjBhMiAyIDAgMCAxIDIgMnY1Ii8+PGNpcmNsZSBjeD0iMTMiIGN5PSIxMiIgcj0iMiIvPjxwYXRoIGQ9Ik0xOCAxOWMtMi44IDAtNS0yLjItNS01djgiLz48Y2lyY2xlIGN4PSIyMCIgY3k9IjE5IiByPSIyIi8+PC9zdmc+",
   questions: [
     {
       question: "What is the visibility of this repository? Select all that apply.",
+      label: "Visibility",
       attributes: [
         { name: "Internal", value: INTERNAL },
         { name: "External (public facing)", value: EXTERNAL },
@@ -24,6 +25,7 @@ const subject = {
     },
     {
       question: "What type(s) of software does this repository contain? Select all that apply.",
+      label: "Type",
       attributes: [
         { name: "Library", value: LIBRARY },
         { name: "Application", value: APPLICATION },
@@ -33,6 +35,7 @@ const subject = {
     },
     {
       question: "How is the software in this repository used? Select all that apply.",
+      label: "Usage",
       attributes: [
         { name: "Installed", value: INSTALLED },
         { name: "Deployed", value: DEPLOYED },
@@ -368,7 +371,7 @@ const subject = {
           name: "Running",
           items: [
             {
-              name: "Running",
+              name: "One Liner",
               detail: {
                 purpose: "Information on how to run the software when developing.",
                 instructions: "REPLACE ME with a one-liner describing where the software is run when developing it",

@@ -1,5 +1,6 @@
 import repository from './repository.js';
 import system from './system.js';
+import team from './team.js';
 
 /**
  * @typedef {object} Subject
@@ -12,6 +13,7 @@ import system from './system.js';
 /**
  * @typedef {object} Question
  * @property {string} question - The question.
+ * @property {string} label - A short label for the question.
  * @property {Array<Attribute>} attributes - The available attributes.
  */
 
@@ -69,6 +71,7 @@ import system from './system.js';
 const subjects = [
   repository,
   system,
+  team
 ];
 
 export default subjects;

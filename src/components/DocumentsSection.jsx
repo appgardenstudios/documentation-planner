@@ -1,0 +1,258 @@
+import { useState, useEffect } from 'react';
+import { groupItemsByDocument, buildDocumentStructure, generateMarkdown } from '../utils/documentUtils';
+
+export default function DocumentsSection({ items = [] }) {
+  const [expandedDocs, setExpandedDocs] = useState(new Set());
+  const [copiedDoc, setCopiedDoc] = useState(null);
+
+  // Group items by document
+  const groupedItems = groupItemsByDocument(items);
+  const docStructure = buildDocumentStructure(items);
+
+  // Initialize all docs as expanded
+  useEffect(() => {
+    if (items && items.length > 0) {
+      setExpandedDocs(new Set(Object.keys(groupedItems)));
+    }
+  }, [items]);
+
+  if (!items || items.length === 0) {
+    return (
+      <div className="text-center">
+        <p className="text-gray-500">No items selected yet. Check items from the left to generate documentation.</p>
+      </div>
+    );
+  }
+
+  const toggleDoc = (docName) => {
+    setExpandedDocs(prev => {
+      const next = new Set(prev);
+      if (next.has(docName)) {
+        next.delete(docName);
+      } else {
+        next.add(docName);
+      }
+      return next;
+    });
+  };
+
+  const generateDocumentMarkdown = (docName) => {
+    const structure = docStructure[docName];
+    const parts = [];
+
+    // Add top-level items
+    if (structure.topLevel && structure.topLevel.length > 0) {
+      structure.topLevel.forEach(item => {
+        parts.push(generateMarkdown(item));
+        parts.push('\n\n');
+      });
+    }
+
+    // Add sections - first section is h1
+    const renderSection = (sections, level = 1) => {
+      Object.entries(sections).forEach(([sectionName, section]) => {
+        // Add section header
+        const headerPrefix = '#'.repeat(level);
+        parts.push(`${headerPrefix} ${sectionName}\n\n`);
+
+        // Add items in this section
+        if (section.items && section.items.length > 0) {
+          section.items.forEach(item => {
+            parts.push(generateMarkdown(item));
+            parts.push('\n\n');
+          });
+        }
+
+        // Recursively render subsections
+        if (section.subsections && Object.keys(section.subsections).length > 0) {
+          renderSection(section.subsections, level + 1);
+        }
+      });
+    };
+
+    if (structure.sections && Object.keys(structure.sections).length > 0) {
+      renderSection(structure.sections);
+    }
+
+    return parts.join('').trim();
+  };
+
+  const copyToClipboard = async (docName) => {
+    const markdown = generateDocumentMarkdown(docName);
+    try {
+      await navigator.clipboard.writeText(markdown);
+      setCopiedDoc(docName);
+      setTimeout(() => setCopiedDoc(null), 4000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  };
+
+  const renderSectionContent = (sections, level = 1) => {
+    return Object.entries(sections).map(([sectionName, section]) => {
+      const HeaderTag = `h${Math.min(level, 6)}`;
+
+      return (
+        <div key={sectionName} className="mb-4">
+          <HeaderTag className={`font-semibold text-gray-900 mb-2 ${
+            level === 1 ? 'text-xl font-bold' : level === 2 ? 'text-base' : level === 3 ? 'text-sm' : 'text-xs'
+          }`}>
+            {sectionName}
+          </HeaderTag>
+
+          {/* Items in this section */}
+          {section.items && section.items.map(item => (
+            <div key={item.path} className="mb-4 relative">
+              {/* Source label with dashed outline */}
+              <div className="border-2 border-dashed border-gray-300 rounded p-4 relative">
+                <div className="absolute -top-3 left-2 bg-white px-2 text-xs text-gray-500 flex items-center h-5">
+                  {item.path.replace(/>/g, ' > ')}
+                </div>
+
+                {/* Item content */}
+                <div className="text-sm text-gray-700 space-y-2">
+                  <div>{item.detail.instructions}</div>
+
+                  {item.detail.usage && (
+                    <div className="text-gray-600">{item.detail.usage}</div>
+                  )}
+
+                  {item.detail.examples && item.detail.examples.length > 0 && (
+                    <div>
+                      {item.detail.examples.map((ex, i) => (
+                        <div key={i} className="italic">
+                          Example: {ex.example}
+                          {ex.reference && ` (${ex.reference})`}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {item.detail.references && item.detail.references.length > 0 && (
+                    <div className="text-gray-600">
+                      {item.detail.references.map((ref, i) => (
+                        <div key={i}>[{i + 1}]: {ref}</div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+
+          {/* Subsections */}
+          {section.subsections && Object.keys(section.subsections).length > 0 && (
+            <div>
+              {renderSectionContent(section.subsections, level + 1)}
+            </div>
+          )}
+        </div>
+      );
+    });
+  };
+
+  return (
+    <div className="space-y-4">
+      {Object.keys(groupedItems).map(docName => {
+        const isExpanded = expandedDocs.has(docName);
+        const structure = docStructure[docName];
+
+        return (
+          <div key={docName} className="border border-gray-200 rounded-lg overflow-hidden">
+            {/* Document header */}
+            <div className="bg-gray-50 border-b border-gray-200 flex items-center justify-between">
+              <button
+                onClick={() => toggleDoc(docName)}
+                className="flex-1 flex items-center gap-2 text-left font-medium text-gray-900 p-3 cursor-pointer"
+                aria-expanded={isExpanded}
+              >
+                <svg
+                  className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-90' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+                {docName}
+              </button>
+
+              <div className="relative p-2 mr-2">
+                <button
+                  onClick={() => copyToClipboard(docName)}
+                  className="p-1.5 rounded transition-colors cursor-pointer text-gray-700 bg-white border border-gray-300 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-300"
+                  title="Copy as Markdown"
+                  aria-label="Copy as Markdown"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+                  </svg>
+                </button>
+                {copiedDoc === docName && (
+                  <div className="absolute top-full right-0 mt-1 px-2 py-1 bg-green-50 border border-green-200 rounded shadow-sm z-10 flex items-center">
+                    <span className="text-xs text-green-600 whitespace-nowrap leading-none">Copied to clipboard</span>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Document content */}
+            {isExpanded && (
+              <article className="p-4">
+                {/* Top-level items (no section) */}
+                {structure.topLevel && structure.topLevel.length > 0 && (
+                  <div className="mb-6">
+                    {structure.topLevel.map(item => (
+                      <div key={item.path} className="mb-4 relative">
+                        <div className="border-2 border-dashed border-gray-300 rounded p-4 relative">
+                          <div className="absolute -top-3 left-2 bg-white px-2 text-xs text-gray-500 flex items-center h-5">
+                            {item.path.replace(/>/g, ' > ')}
+                          </div>
+
+                          <div className="text-sm text-gray-700 space-y-2">
+                            <div>{item.detail.instructions}</div>
+
+                            {item.detail.usage && (
+                              <div className="text-gray-600">{item.detail.usage}</div>
+                            )}
+
+                            {item.detail.examples && item.detail.examples.length > 0 && (
+                              <div>
+                                {item.detail.examples.map((ex, i) => (
+                                  <div key={i} className="italic">
+                                    Example: {ex.example}
+                                    {ex.reference && ` (${ex.reference})`}
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+
+                            {item.detail.references && item.detail.references.length > 0 && (
+                              <div className="text-gray-600">
+                                {item.detail.references.map((ref, i) => (
+                                  <div key={i}>[{i + 1}]: {ref}</div>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Sections */}
+                {structure.sections && Object.keys(structure.sections).length > 0 && (
+                  <div>
+                    {renderSectionContent(structure.sections)}
+                  </div>
+                )}
+              </article>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
