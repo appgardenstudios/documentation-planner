@@ -1,7 +1,6 @@
-const ATTR_UI = "UI"
-const ATTR_APPLICATION = "Application"
-const ATTR_API = "API"
-const ATTR_INFRASTRUCTURE = "Infrastructure"
+const ATTR_UI = "UI";
+const ATTR_API = "API";
+const ATTR_INFRASTRUCTURE = "Infrastructure";
 
 const DOC_SYSTEM = "DOC_SYSTEM";
 const DOC_REQUIREMENTS = "DOC_REQUIREMENTS";
@@ -21,8 +20,7 @@ const subject = {
       label: "Components",
       attributes: [
         { name: "User Interface (UI)", value: ATTR_UI },
-        { name: "Application", value: ATTR_APPLICATION },
-        { name: "Callable API (HTTP or SDK)", value: ATTR_API },
+        { name: "Callable API (e.g. HTTP, REST)", value: ATTR_API },
         { name: "Infrastructure", value: ATTR_INFRASTRUCTURE },
       ],
     },
@@ -187,6 +185,15 @@ const subject = {
             },
           ],
         },
+        {
+          name: "Change Log",
+          detail: {
+            purpose: "Describe significant changes that have occurred in this system over time.",
+            instructions: "REPLACE ME with a list of significant changes that have occurred in this system over time.",
+            document: DOC_SYSTEM,
+            section: "System Name#Change Log",
+          }
+        }
       ],
     },
     {
@@ -394,6 +401,7 @@ const subject = {
             instructions: "REPLACE ME with a definition of the required performance characteristics for the system. Address items such as response time, latency, throughput, capacity, etc.",
             document: DOC_REQUIREMENTS,
             section: "Requirements#Non-Functional Requirements#Performance",
+            attributes: [ATTR_API],
           },
         },
         {
@@ -412,6 +420,7 @@ const subject = {
             instructions: "REPLACE ME with a definition of the required scalability requirements for the system. Address items such as scale out vs scale up, costs, minimums and maximums, etc.",
             document: DOC_REQUIREMENTS,
             section: "Requirements#Non-Functional Requirements#Scalability",
+            attributes: [ATTR_API],
           },
         },
         {
@@ -421,6 +430,7 @@ const subject = {
             instructions: "REPLACE ME with a definition of the required availability requirements for the system. Address items such as up-time, outage windows, calculations, etc.",
             document: DOC_REQUIREMENTS,
             section: "Requirements#Non-Functional Requirements#Availability",
+            attributes: [ATTR_API],
           },
         },
         {
@@ -458,6 +468,7 @@ const subject = {
             instructions: "REPLACE ME with a definition of the required compatibility requirements for the system. Address items such as backwards compatibility, platform compatibility, interoperability, supported protocols, etc.",
             document: DOC_REQUIREMENTS,
             section: "Requirements#Non-Functional Requirements#Compatibility",
+            attributes: [ATTR_API],
           },
         },
         {
@@ -805,20 +816,6 @@ const subject = {
           },
         },
       ],
-    },
-    {
-      name: "Change Log",
-      items: [
-        {
-          name: "Change Log",
-          detail: {
-            purpose: "Describe significant changes that have occurred in this system over time.",
-            instructions: "REPLACE ME with a list of significant changes that have occurred in this system over time.",
-            document: DOC_SYSTEM,
-            section: "System Name#Change Log",
-          }
-        }
-      ]
     },
   ]
 };
