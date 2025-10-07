@@ -1,7 +1,13 @@
-const UI = "UI"
-const APPLICATION = "Application"
-const API = "API"
-const INFRASTRUCTURE = "Infrastructure"
+const ATTR_UI = "UI"
+const ATTR_APPLICATION = "Application"
+const ATTR_API = "API"
+const ATTR_INFRASTRUCTURE = "Infrastructure"
+
+const DOC_SYSTEM = "DOC_SYSTEM";
+const DOC_REQUIREMENTS = "DOC_REQUIREMENTS";
+const DOC_ARCHITECTURE = "DOC_ARCHITECTURE";
+const DOC_OPERATION_AND_MAINTENANCE = "DOC_OPERATION_AND_MAINTENANCE";
+const DOC_SECURITY = "DOC_SECURITY";
 
 /**
  * @type {import(".").Subject}
@@ -14,12 +20,19 @@ const subject = {
       question: "Which of the following are present in this system? Select all that apply.",
       label: "Components",
       attributes: [
-        { name: "User Interface (UI)", value: UI },
-        { name: "Application", value: APPLICATION },
-        { name: "Callable API (HTTP or SDK)", value: API },
-        { name: "Infrastructure", value: INFRASTRUCTURE },
+        { name: "User Interface (UI)", value: ATTR_UI },
+        { name: "Application", value: ATTR_APPLICATION },
+        { name: "Callable API (HTTP or SDK)", value: ATTR_API },
+        { name: "Infrastructure", value: ATTR_INFRASTRUCTURE },
       ],
     },
+  ],
+  documents: [
+    {name: DOC_SYSTEM},
+    {name: DOC_REQUIREMENTS},
+    {name: DOC_ARCHITECTURE},
+    {name: DOC_OPERATION_AND_MAINTENANCE},
+    {name: DOC_SECURITY},
   ],
   items: [
     {
@@ -30,7 +43,7 @@ const subject = {
           detail: {
             purpose: "Describe this system in one or two sentences in tagline format.",
             instructions: "REPLACE ME with a tagline describing this system",
-            document: "SYSTEM",
+            document: DOC_SYSTEM,
             section: "System Name",
           },
         },
@@ -39,7 +52,7 @@ const subject = {
           detail: {
             purpose: "Provide a high-level overview of this system.",
             instructions: "REPLACE ME with a high-level overview of this system. Include an overview of the business purpose and goals, overall data flow, high-level architecture, etc.",
-            document: "SYSTEM",
+            document: DOC_SYSTEM,
             section: "System Name#Overview",
           },
         },
@@ -48,7 +61,7 @@ const subject = {
           detail: {
             purpose: "Describe the background of this system, how and why it came to be, etc.",
             instructions: "REPLACE ME with the background of this system, including how and why it came to be, important information to know about the context of its genesis, etc.",
-            document: "SYSTEM",
+            document: DOC_SYSTEM,
             section: "System Name#Background",
           },
         },
@@ -57,7 +70,7 @@ const subject = {
           detail: {
             purpose: "Describe the system's purpose within the organization and the high-level goals it was created to achieve.",
             instructions: "REPLACE ME with description of the system's purpose and the high-level goals it was created to achieve.",
-            document: "SYSTEM",
+            document: DOC_SYSTEM,
             section: "System Name#Scope",
           },
         },
@@ -66,7 +79,7 @@ const subject = {
           detail: {
             purpose: "Describe the scope of the system, including what is and what is not included.",
             instructions: "REPLACE ME with a description of the scope of this system. Make sure to include both what is and what is not in scope and why those decisions were made. Link to other system(s) that border this system in terms of scope if applicable.",
-            document: "SYSTEM",
+            document: DOC_SYSTEM,
             section: "System Name#Scope",
           },
         },
@@ -75,7 +88,7 @@ const subject = {
           detail: {
             purpose: "List the system owners",
             instructions: "REPLACE ME with a list of the system's owners, including what role they play and/or what responsibility they have",
-            document: "SYSTEM",
+            document: DOC_SYSTEM,
             section: "System Name#Ownership",
           },
         },
@@ -84,7 +97,7 @@ const subject = {
           detail: {
             purpose: "List the stakeholders for the system",
             instructions: "REPLACE ME with a list of the system's stakeholders, including what role they play or responsibility they have.",
-            document: "SYSTEM",
+            document: DOC_SYSTEM,
             section: "System Name#Ownership",
           },
         },
@@ -93,7 +106,7 @@ const subject = {
           detail: {
             purpose: "State the current status of this system within the organizations system development lifecycle.",
             instructions: "REPLACE ME with the current status of this system within the organizations system development lifecycle.",
-            document: "SYSTEM",
+            document: DOC_SYSTEM,
             section: "System Name#Status",
           },
         },
@@ -105,7 +118,7 @@ const subject = {
               detail: {
                 purpose: "List relevant and applicable links and references.",
                 instructions: "REPLACE ME with a list of applicable links and references.",
-                document: "SYSTEM",
+                document: DOC_SYSTEM,
                 section: "System Name#References",
               },
             },
@@ -114,7 +127,7 @@ const subject = {
               detail: {
                 purpose: "Link to the owning team's documentation.",
                 instructions: "REPLACE ME with a link to the owning team's documentation.",
-                document: "SYSTEM",
+                document: DOC_SYSTEM,
                 section: "System Name#References",
               },
             },
@@ -123,7 +136,7 @@ const subject = {
               detail: {
                 purpose: "Link to project management system where tickets for this system are stored.",
                 instructions: "REPLACE ME with a link to project management system where tickets for this system are stored",
-                document: "SYSTEM",
+                document: DOC_SYSTEM,
                 section: "System Name#References",
               },
             },
@@ -132,7 +145,7 @@ const subject = {
               detail: {
                 purpose: "Link to the repository or repositories that contain this system's source code and configuration.",
                 instructions: "REPLACE ME with link(s) to the repository or repositories that contain this system's source code and configuration.",
-                document: "SYSTEM",
+                document: DOC_SYSTEM,
                 section: "System Name#References",
               },
             },
@@ -141,7 +154,7 @@ const subject = {
               detail: {
                 purpose: "Link to the requirement document(s) related to this system.",
                 instructions: "REPLACE ME with link(s) to the requirement document(s) related to this system.",
-                document: "SYSTEM",
+                document: DOC_SYSTEM,
                 section: "System Name#Requirements",
               },
             },
@@ -150,7 +163,7 @@ const subject = {
               detail: {
                 purpose: "Link to the specification documents related to this system.",
                 instructions: "REPLACE ME with link(s) to the specification documents related to this system.",
-                document: "SYSTEM",
+                document: DOC_SYSTEM,
                 section: "System Name#References",
               },
             },
@@ -159,7 +172,7 @@ const subject = {
               detail: {
                 purpose: "Link to the architectural or product decision logs related to this system.",
                 instructions: "REPLACE ME with link(s) to the architectural or product decision logs related to this system.",
-                document: "SYSTEM",
+                document: DOC_SYSTEM,
                 section: "System Name#References",
               },
             },
@@ -168,7 +181,7 @@ const subject = {
               detail: {
                 purpose: "Link to the sub-system(s) contained within this system.",
                 instructions: "REPLACE ME with link(s) to the sub-system(s) contained within this system.",
-                document: "SYSTEM",
+                document: DOC_SYSTEM,
                 section: "System Name#References",
               },
             },
@@ -184,7 +197,7 @@ const subject = {
           detail: {
             purpose: "Detail the business rules and logic required of the system.",
             instructions: "REPLACE ME with a detailed specification of the business rules and logic implemented by this system.",
-            document: "REQUIREMENTS",
+            document: DOC_REQUIREMENTS,
             section: "Requirements#Business Requirements",
           },
         },
@@ -196,7 +209,7 @@ const subject = {
               detail: {
                 purpose: "Describe how users are managed within the system.",
                 instructions: "REPLACE ME with a high-level overview of how users are managed within the system.",
-                document: "REQUIREMENTS",
+                document: DOC_REQUIREMENTS,
                 section: "Requirements#User Management",
               },
             },
@@ -205,7 +218,7 @@ const subject = {
               detail: {
                 purpose: "Describe how users are added to the system.",
                 instructions: "REPLACE ME with a description of how users are registered or added to the system. This could be a link to another system.",
-                document: "REQUIREMENTS",
+                document: DOC_REQUIREMENTS,
                 section: "Requirements#User Management",
               },
             },
@@ -214,7 +227,7 @@ const subject = {
               detail: {
                 purpose: "Describe how users log in to the system.",
                 instructions: "REPLACE ME with a description of how users log in to the system. Provide a link to the login system if applicable.",
-                document: "REQUIREMENTS",
+                document: DOC_REQUIREMENTS,
                 section: "Requirements#User Management",
               },
             },
@@ -223,7 +236,7 @@ const subject = {
               detail: {
                 purpose: "Describe how users authenticate to this system.",
                 instructions: "REPLACE ME with a description of how users authenticate to the system. If this system directly provides authentication, detail how authentication happens. If not, describe how authentication happens and link to the system that provides it.",
-                document: "REQUIREMENTS",
+                document: DOC_REQUIREMENTS,
                 section: "Requirements#User Management",
               },
             },
@@ -232,7 +245,7 @@ const subject = {
               detail: {
                 purpose: "Describe how users are authorized to take certain actions in this system.",
                 instructions: "REPLACE ME with a description of how actions in this system are authorized. If applicable include a list of the actions users can take and the authorization needed to take that action. Include links to any external systems used to obtain or validate authorization.",
-                document: "REQUIREMENTS",
+                document: DOC_REQUIREMENTS,
                 section: "Requirements#User Management",
               },
             },
@@ -241,7 +254,7 @@ const subject = {
               detail: {
                 purpose: "Describe how users reset their password.",
                 instructions: "REPLACE ME with a description of how users reset their password.",
-                document: "REQUIREMENTS",
+                document: DOC_REQUIREMENTS,
                 section: "Requirements#User Management",
               },
             },
@@ -250,7 +263,7 @@ const subject = {
               detail: {
                 purpose: "Describe how users manage their profile, including authentication, authorization, and other data associated with their profile.",
                 instructions: "REPLACE ME with a description of how users manage their profile, including authentication, authorization, and other data associated with their profile. If applicable, include details about what data is associated with a user along with what it is used for and any requirements about how it is defaulted, set, and validated.",
-                document: "REQUIREMENTS",
+                document: DOC_REQUIREMENTS,
                 section: "Requirements#User Management",
               },
             },
@@ -264,7 +277,7 @@ const subject = {
               detail: {
                 purpose: "Describe how data is managed within the system.",
                 instructions: "REPLACE ME with a summary or high-level description of what data exists and how data is managed in the system.",
-                document: "REQUIREMENTS",
+                document: DOC_REQUIREMENTS,
                 section: "Requirements#Data Management",
               },
             },
@@ -273,7 +286,7 @@ const subject = {
               detail: {
                 purpose: "List the data contained in and processed by this system.",
                 instructions: "REPLACE ME with a list of all of the data processed and/or stored by this system. For each piece of data describe what it is, what it contains, how it is processed, and how it is stored (if applicable).",
-                document: "REQUIREMENTS",
+                document: DOC_REQUIREMENTS,
                 section: "Requirements#Data Management",
               },
             },
@@ -282,7 +295,7 @@ const subject = {
               detail: {
                 purpose: "Describe how data enters the system.",
                 instructions: "REPLACE ME with a description of how data enters the system. Also include a list of what pieces of data enter where.",
-                document: "REQUIREMENTS",
+                document: DOC_REQUIREMENTS,
                 section: "Requirements#Data Management#Entry",
               },
             },
@@ -291,7 +304,7 @@ const subject = {
               detail: {
                 purpose: "Describe how data entering, being processed by, or existing the system is validated.",
                 instructions: "REPLACE ME with a description of how data entering, being processed by, or existing the system is validated.",
-                document: "REQUIREMENTS",
+                document: DOC_REQUIREMENTS,
                 section: "Requirements#Data Management#Validation",
               },
             },
@@ -300,7 +313,7 @@ const subject = {
               detail: {
                 purpose: "Describe how data is stored in the system.",
                 instructions: "REPLACE ME with a description of how data is stored in the system. Include the location and schema of the data being stored along with any encryption or processing that occurs.",
-                document: "REQUIREMENTS",
+                document: DOC_REQUIREMENTS,
                 section: "Requirements#Data Management#Storage",
               },
             },
@@ -309,7 +322,7 @@ const subject = {
               detail: {
                 purpose: "Describe how data is retrieved in the system.",
                 instructions: "REPLACE ME with a description of how data is retrieved in the system. Include details about what processes and/or systems are able to retrieve data, including any manual or emergency processes.",
-                document: "REQUIREMENTS",
+                document: DOC_REQUIREMENTS,
                 section: "Requirements#Data Management#Retrieval",
               },
             },
@@ -318,7 +331,7 @@ const subject = {
               detail: {
                 purpose: "Describe how data is archived in the system.",
                 instructions: "REPLACE ME with a description of how data is archived in the system (if applicable). Include details about how and where data is archived from and to, including the processes and systems involved (including manual or emergency processes).",
-                document: "REQUIREMENTS",
+                document: DOC_REQUIREMENTS,
                 section: "Requirements#Data Management#Archiving",
               },
             },
@@ -327,7 +340,7 @@ const subject = {
               detail: {
                 purpose: "Describe how data is backed up by the system.",
                 instructions: "REPLACE ME with a description of how data is backed up by the system (if applicable). Include details about how and where data is backed up from and to, including the processes and systems involved (including manual or emergency processes).",
-                document: "REQUIREMENTS",
+                document: DOC_REQUIREMENTS,
                 section: "Requirements#Data Management#Backup",
               },
             },
@@ -336,7 +349,7 @@ const subject = {
               detail: {
                 purpose: "Describe how data is permanently erased from the system.",
                 instructions: "REPLACE ME with a description of how data is permanently erased from the system (if applicable). Include details about the processes and systems involved (including manual or emergency processes).",
-                document: "REQUIREMENTS",
+                document: DOC_REQUIREMENTS,
                 section: "Requirements#Data Management#Backup",
               },
             },
@@ -345,7 +358,7 @@ const subject = {
               detail: {
                 purpose: "Describe how data is restored to the system.",
                 instructions: "REPLACE ME with a description of how data is restored to the system (if applicable). Include details about the processes and systems involved (including manual or emergency processes).",
-                document: "REQUIREMENTS",
+                document: DOC_REQUIREMENTS,
                 section: "Requirements#Data Management#Restoration",
               },
             },
@@ -356,7 +369,7 @@ const subject = {
           detail: {
             purpose: "Define how errors will be handled by the system and surfaced to users.",
             instructions: "REPLACE ME with instructions about how to handle errors, what to log, and how/what to surface to users.",
-            document: "REQUIREMENTS",
+            document: DOC_REQUIREMENTS,
             section: "Requirements#Error Handling",
           },
         },
@@ -365,7 +378,7 @@ const subject = {
           detail: {
             purpose: "Define how system recovery will be handled in the case of a major outage or incident.",
             instructions: "REPLACE ME with a detailed description about how system recovery will be handled in the case of a major outage or incident.",
-            document: "REQUIREMENTS",
+            document: DOC_REQUIREMENTS,
             section: "Requirements#Recovery Plan",
           },
         },
@@ -379,7 +392,7 @@ const subject = {
           detail: {
             purpose: "Define the performance requirements for the system.",
             instructions: "REPLACE ME with a definition of the required performance characteristics for the system. Address items such as response time, latency, throughput, capacity, etc.",
-            document: "REQUIREMENTS",
+            document: DOC_REQUIREMENTS,
             section: "Requirements#Non-Functional Requirements#Performance",
           },
         },
@@ -388,7 +401,7 @@ const subject = {
           detail: {
             purpose: "Define the security requirements for the system.",
             instructions: "REPLACE ME with a definition of the required security requirements for the system. Address items such as authentication, authorization, data protection, compliance, etc.",
-            document: "REQUIREMENTS",
+            document: DOC_REQUIREMENTS,
             section: "Requirements#Non-Functional Requirements#Security",
           },
         },
@@ -397,7 +410,7 @@ const subject = {
           detail: {
             purpose: "Define the scalability requirements for the system.",
             instructions: "REPLACE ME with a definition of the required scalability requirements for the system. Address items such as scale out vs scale up, costs, minimums and maximums, etc.",
-            document: "REQUIREMENTS",
+            document: DOC_REQUIREMENTS,
             section: "Requirements#Non-Functional Requirements#Scalability",
           },
         },
@@ -406,7 +419,7 @@ const subject = {
           detail: {
             purpose: "Define the availability requirements for the system.",
             instructions: "REPLACE ME with a definition of the required availability requirements for the system. Address items such as up-time, outage windows, calculations, etc.",
-            document: "REQUIREMENTS",
+            document: DOC_REQUIREMENTS,
             section: "Requirements#Non-Functional Requirements#Availability",
           },
         },
@@ -415,7 +428,7 @@ const subject = {
           detail: {
             purpose: "Define the recoverability requirements for the system.",
             instructions: "REPLACE ME with a definition of the required recoverability requirements for the system. Address items such as recovery time objective, recovery point objective, maximum tolerable downtime, etc.",
-            document: "REQUIREMENTS",
+            document: DOC_REQUIREMENTS,
             section: "Requirements#Non-Functional Requirements#Recoverability",
           },
         },
@@ -424,7 +437,7 @@ const subject = {
           detail: {
             purpose: "Define the maintainability requirements for the system.",
             instructions: "REPLACE ME with a definition of the required maintainability requirements for the system. Address items such as testability, modifiability, supportability, etc.",
-            document: "REQUIREMENTS",
+            document: DOC_REQUIREMENTS,
             section: "Requirements#Non-Functional Requirements#Maintainability",
           },
         },
@@ -433,9 +446,9 @@ const subject = {
           detail: {
             purpose: "Define the usability requirements for the system.",
             instructions: "REPLACE ME with a definition of the required usability requirements for the system. Address items such as learnability, efficiency, accessibility, aesthetics, etc.",
-            document: "REQUIREMENTS",
+            document: DOC_REQUIREMENTS,
             section: "Requirements#Non-Functional Requirements#Usability",
-            attributes: [UI],
+            attributes: [ATTR_UI],
           },
         },
         {
@@ -443,7 +456,7 @@ const subject = {
           detail: {
             purpose: "Define the compatibility requirements for the system.",
             instructions: "REPLACE ME with a definition of the required compatibility requirements for the system. Address items such as backwards compatibility, platform compatibility, interoperability, supported protocols, etc.",
-            document: "REQUIREMENTS",
+            document: DOC_REQUIREMENTS,
             section: "Requirements#Non-Functional Requirements#Compatibility",
           },
         },
@@ -452,7 +465,7 @@ const subject = {
           detail: {
             purpose: "Define the regulatory requirements for the system.",
             instructions: "REPLACE ME with a definition of the required regulatory requirements for the system. Address items such as GDPR, CCPA, HIPPA, etc.",
-            document: "REQUIREMENTS",
+            document: DOC_REQUIREMENTS,
             section: "Requirements#Non-Functional Requirements#Regulatory",
           },
         },
@@ -461,7 +474,7 @@ const subject = {
           detail: {
             purpose: "Define the affordability requirements for the system.",
             instructions: "REPLACE ME with a definition of the required affordability requirements for the system. Address items such as baseline costs, maximum costs, expected usage costs, etc.",
-            document: "REQUIREMENTS",
+            document: DOC_REQUIREMENTS,
             section: "Requirements#Non-Functional Requirements#Affordability",
           },
         },
@@ -475,7 +488,7 @@ const subject = {
           detail: {
             purpose: "Describe the architecture of this system in 1-2 sentences.",
             instructions: "REPLACE ME with a 1-2 sentence summary of the architecture for this system.",
-            document: "ARCHITECTURE",
+            document: DOC_ARCHITECTURE,
             section: "Architecture",
           },
         },
@@ -484,7 +497,7 @@ const subject = {
           detail: {
             purpose: "Describe the architecture of this system at a high level.",
             instructions: "REPLACE ME with a high level description of the architecture for this system. The level of detail should be high-level enough to get a sense for the entire system, and granular enough to cover all major system components and main data flows.",
-            document: "ARCHITECTURE",
+            document: DOC_ARCHITECTURE,
             section: "Architecture#Birds Eye View",
           },
         },
@@ -493,7 +506,7 @@ const subject = {
           detail: {
             purpose: "Describe the dependencies of this system.",
             instructions: "REPLACE ME with a list if dependencies, including adjacent systems, software, processes, data sets, etc.",
-            document: "ARCHITECTURE",
+            document: DOC_ARCHITECTURE,
             section: "Architecture#Dependencies",
           },
         },
@@ -502,7 +515,7 @@ const subject = {
           detail: {
             purpose: "List the technologies used in and by this system.",
             instructions: "REPLACE ME with a list of technologies used in and by this system, including languages, frameworks, platforms, tooling, etc.",
-            document: "ARCHITECTURE",
+            document: DOC_ARCHITECTURE,
             section: "Architecture#Technologies",
           },
         },
@@ -511,7 +524,7 @@ const subject = {
           detail: {
             purpose: "List the constraints and invariants that this system must abide by.",
             instructions: "REPLACE ME with a list of the constraints and invariants that this system must abide by.",
-            document: "ARCHITECTURE",
+            document: DOC_ARCHITECTURE,
             section: "Architecture#Constraints and Invariants",
           },
         },
@@ -520,7 +533,7 @@ const subject = {
           detail: {
             purpose: "List the core principles used to guide the development and maintenance of this system.",
             instructions: "REPLACE ME with a list of the core principles used to guide the development and maintenance of this system.",
-            document: "ARCHITECTURE",
+            document: DOC_ARCHITECTURE,
             section: "Architecture#Core Principles",
           },
         },
@@ -529,7 +542,7 @@ const subject = {
           detail: {
             purpose: "Detail the components of the system and the connections between them.",
             instructions: "REPLACE ME with a description of the components of the system and the connections between them. Make sure to recurse into any non-trivial components and provide additional component and connection details.",
-            document: "ARCHITECTURE",
+            document: DOC_ARCHITECTURE,
             section: "Architecture#Components and Connections",
           },
         },
@@ -538,7 +551,7 @@ const subject = {
           detail: {
             purpose: "Detail how data flows through the components and connections of the system.",
             instructions: "REPLACE ME with a description of how data flows through the components and connections of the system. Make sure to include how data enters and exists the system, as well as where data is in memory or at rest.",
-            document: "ARCHITECTURE",
+            document: DOC_ARCHITECTURE,
             section: "Architecture#Data Flow",
           },
         },
@@ -547,7 +560,7 @@ const subject = {
           detail: {
             purpose: "Detail how data is stored at rest.",
             instructions: "REPLACE ME with a description of how data is stored at rest. Make sure to address the data format or schema, encryption, and data access/backup/recovery",
-            document: "ARCHITECTURE",
+            document: DOC_ARCHITECTURE,
             section: "Architecture#Data at Rest",
           },
         },
@@ -556,7 +569,7 @@ const subject = {
           detail: {
             purpose: "Provide additional details about each component.",
             instructions: "REPLACE ME with a set of sections containing important and pertinent details about each system component. Include and address items such as specifications, interfaces, apis, dependencies, interfaces, etc.",
-            document: "ARCHITECTURE",
+            document: DOC_ARCHITECTURE,
             section: "Architecture#Component Details",
           },
         },
@@ -565,7 +578,7 @@ const subject = {
           detail: {
             purpose: "List and link to all architectural decision records for this system.",
             instructions: "REPLACE ME with a list or links to all architectural decision records for this system.",
-            document: "ARCHITECTURE",
+            document: DOC_ARCHITECTURE,
             section: "Architecture#Decision Records",
           },
         },
@@ -579,7 +592,7 @@ const subject = {
           detail: {
             purpose: "Describe the deployment process for this system.",
             instructions: "REPLACE ME with a description of the deployment process for this system, including a set of instructions or link to a runbook detailing how to deploy the system.",
-            document: "OPERATION_AND_MAINTENANCE",
+            document: DOC_OPERATION_AND_MAINTENANCE,
             section: "Operation and Maintenance#Deployment",
           },
         },
@@ -588,7 +601,7 @@ const subject = {
           detail: {
             purpose: "Describe how the configuration for this system is managed.",
             instructions: "REPLACE ME with a description of how the configuration of this system is managed. Include details of what is configurable, how to update the configuration (via code, deployment, manually, etc.), default configuration values, etc.",
-            document: "OPERATION_AND_MAINTENANCE",
+            document: DOC_OPERATION_AND_MAINTENANCE,
             section: "Operation and Maintenance#Configuration",
           },
         },
@@ -597,7 +610,7 @@ const subject = {
           detail: {
             purpose: "Describe how the troubleshoot this system.",
             instructions: "REPLACE ME with a description of how to troubleshoot this system, including instructions for common items or issues. Include links to troubleshooting guides, runtime systems, monitoring, alerting, incident management documentation, etc.",
-            document: "OPERATION_AND_MAINTENANCE",
+            document: DOC_OPERATION_AND_MAINTENANCE,
             section: "Operation and Maintenance#Troubleshooting",
           },
         },
@@ -606,7 +619,7 @@ const subject = {
           detail: {
             purpose: "List the available runbooks for the system.",
             instructions: "REPLACE ME with a list of available runbooks for this system.",
-            document: "OPERATION_AND_MAINTENANCE",
+            document: DOC_OPERATION_AND_MAINTENANCE,
             section: "Operation and Maintenance#Runbooks",
           },
         },
@@ -615,7 +628,7 @@ const subject = {
           detail: {
             purpose: "Describe how the system is monitored and provide links to the relevant monitoring systems.",
             instructions: "REPLACE ME with a description of how this system is monitored. Include links or references to monitoring systems or other instrumentation.",
-            document: "OPERATION_AND_MAINTENANCE",
+            document: DOC_OPERATION_AND_MAINTENANCE,
             section: "Operation and Maintenance#Monitoring",
           },
         },
@@ -624,7 +637,7 @@ const subject = {
           detail: {
             purpose: "Describe how alerting is managed and what alerts are configured.",
             instructions: "REPLACE ME with a description of how alerts are managed and what alerts are configured. Include a list (or link to a list) of configured alerts, link(s) to on call assignments, link(s) to incident management software, etc.",
-            document: "OPERATION_AND_MAINTENANCE",
+            document: DOC_OPERATION_AND_MAINTENANCE,
             section: "Operation and Maintenance#Alerting",
           },
         },
@@ -633,7 +646,7 @@ const subject = {
           detail: {
             purpose: "Describe how automatic and manual backup works.",
             instructions: "REPLACE ME with a description of how automatic backups are configured, how to perform manual backups, and links to relevant runbooks.",
-            document: "OPERATION_AND_MAINTENANCE",
+            document: DOC_OPERATION_AND_MAINTENANCE,
             section: "Operation and Maintenance#Backup",
           },
         },
@@ -642,7 +655,7 @@ const subject = {
           detail: {
             purpose: "Describe how recovery works.",
             instructions: "REPLACE ME with a description of how recovery works. Include link(s) to relevant runbooks or process documentation.",
-            document: "OPERATION_AND_MAINTENANCE",
+            document: DOC_OPERATION_AND_MAINTENANCE,
             section: "Operation and Maintenance#Recovery",
           },
         },
@@ -651,7 +664,7 @@ const subject = {
           detail: {
             purpose: "Describe required system maintenance.",
             instructions: "REPLACE ME with a description of any maintenance that must be performed on the system. Include a list of the maintenance required, the cadence of the maintenance, and link(s) to relevant runbooks or process documentation.",
-            document: "OPERATION_AND_MAINTENANCE",
+            document: DOC_OPERATION_AND_MAINTENANCE,
             section: "Operation and Maintenance#Maintenance",
           },
         },
@@ -665,7 +678,7 @@ const subject = {
           detail: {
             purpose: "Detail the security roles and responsibilities for this system.",
             instructions: "REPLACE ME with a list of roles and responsibilities for this system, including any links to organization security documentation.",
-            document: "SECURITY",
+            document: DOC_SECURITY,
             section: "Security#Roles and Responsibilities",
           },
         },
@@ -674,7 +687,7 @@ const subject = {
           detail: {
             purpose: "Detail the non-functional security requirements for this system.",
             instructions: "REPLACE ME with a list of non-functional security requirements for this system, including performance, availability, resilience, etc.",
-            document: "SECURITY",
+            document: DOC_SECURITY,
             section: "Security#Non-Functional Requirements",
           },
         },
@@ -683,7 +696,7 @@ const subject = {
           detail: {
             purpose: "Detail the boundaries this system and list the points at which this system integrates with other systems.",
             instructions: "REPLACE ME with a description of the system boundaries and a list of integration points between this system and other systems. Include a description of the function and data exchanged at each integration point, along with details about how each integration is secured.",
-            document: "SECURITY",
+            document: DOC_SECURITY,
             section: "Security#System Boundaries and Integrations",
           },
         },
@@ -692,7 +705,7 @@ const subject = {
           detail: {
             purpose: "Detail the security features present in this system.",
             instructions: "REPLACE ME with a description and details about the security features present in this system. Include information about authentication, encryption (at rest and in transit), firewalls, authorization, virus scanning, vulnerability management, etc.",
-            document: "SECURITY",
+            document: DOC_SECURITY,
             section: "Security#Security Features",
           },
         },
@@ -704,7 +717,7 @@ const subject = {
               detail: {
                 purpose: "Provide a high-level summary of how data is secured.",
                 instructions: "REPLACE ME with a high-level summary of how data is secured.",
-                document: "SECURITY",
+                document: DOC_SECURITY,
                 section: "Security#Data",
               },
             },
@@ -713,7 +726,7 @@ const subject = {
               detail: {
                 purpose: "Describe the roles and responsibilities for each piece of data processed and/or stored by the system.",
                 instructions: "REPLACE ME with a description of the roles and responsibilities for each piece of data processed and/or stored by the system.",
-                document: "SECURITY",
+                document: DOC_SECURITY,
                 section: "Security#Data#Roles and Responsibilities",
               },
             },
@@ -722,7 +735,7 @@ const subject = {
               detail: {
                 purpose: "Describe (or reference) the available data classification levels and classify each piece of data processed and/or stored by the system.",
                 instructions: "REPLACE ME with a description (or reference to) the available data classification levels and classify each piece of data processed and/or stored by the system.",
-                document: "SECURITY",
+                document: DOC_SECURITY,
                 section: "Security#Data#Classification",
               },
             },
@@ -731,7 +744,7 @@ const subject = {
               detail: {
                 purpose: "Describe (or reference) the available data handling procedures and describe how they are user and/or implemented within this system.",
                 instructions: "REPLACE ME with a description (or reference to) the available data handling procedures and describe how they are user and/or implemented within this system.",
-                document: "SECURITY",
+                document: DOC_SECURITY,
                 section: "Security#Data#Handling",
               },
             },
@@ -740,7 +753,7 @@ const subject = {
               detail: {
                 purpose: "Describe (or reference) the access controls implemented by this system.",
                 instructions: "REPLACE ME with a description (or reference to) the access controls implemented by this system.",
-                document: "SECURITY",
+                document: DOC_SECURITY,
                 section: "Security#Data#Access Controls",
               },
             },
@@ -751,7 +764,7 @@ const subject = {
           detail: {
             purpose: "Detail the security controls present in this system.",
             instructions: "REPLACE ME with a description and details about the security controls present in this system.",
-            document: "SECURITY",
+            document: DOC_SECURITY,
             section: "Security#Security Controls",
           },
         },
@@ -760,7 +773,7 @@ const subject = {
           detail: {
             purpose: "Detail or link to the threat model used when performing risk assessments and security reviews.",
             instructions: "REPLACE ME with a description or link to the threat model used when performing risk assessments and security reviews.",
-            document: "SECURITY",
+            document: DOC_SECURITY,
             section: "Security#Threat Model",
           },
         },
@@ -769,7 +782,7 @@ const subject = {
           detail: {
             purpose: "Include or link to the risk assessment(s) performed on this system.",
             instructions: "REPLACE ME with links to or the actual risk assessment(s) performed on this system.",
-            document: "SECURITY",
+            document: DOC_SECURITY,
             section: "Security#Risk Assessment",
           },
         },
@@ -778,7 +791,7 @@ const subject = {
           detail: {
             purpose: "Include or link to the incident response plan that includes this system.",
             instructions: "REPLACE ME with links to or the actual incident response plan used for this system.",
-            document: "SECURITY",
+            document: DOC_SECURITY,
             section: "Security#Incident Response",
           },
         },
@@ -787,7 +800,7 @@ const subject = {
           detail: {
             purpose: "Include or link to the vulnerability management plan and process used by this system.",
             instructions: "REPLACE ME with links to or the actual vulnerability management plan and process used by this system.",
-            document: "SECURITY",
+            document: DOC_SECURITY,
             section: "Security#Vulnerability Management",
           },
         },
@@ -801,7 +814,7 @@ const subject = {
           detail: {
             purpose: "Describe significant changes that have occurred in this system over time.",
             instructions: "REPLACE ME with a list of significant changes that have occurred in this system over time.",
-            document: "SYSTEM",
+            document: DOC_SYSTEM,
             section: "System Name#Change Log",
           }
         }
