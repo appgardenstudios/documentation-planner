@@ -162,15 +162,9 @@ export default function ItemsToDocument({
   onSelectionChange = () => {}
 }) {
   // Track which categories are expanded
-  const [expandedCategories, setExpandedCategories] = useState(new Set());
+  const [expandedCategories, setExpandedCategories] = useState(new Set(items.map(item => item.name)));
 
-  // Initialize all categories as expanded when items change
-  useEffect(() => {
-    const allCategories = new Set(items.map(item => item.name));
-    setExpandedCategories(allCategories);
-  }, [items]);
-
-  // Auto-check items based on selected attributes on initial load only
+  // Auto-check items based on selected attributes on initial load
   useEffect(() => {
     if (selectedItems.length === 0) {
       const matchingPaths = getMatchingItemPaths(items, selectedAttributes);
