@@ -43,6 +43,24 @@ export default function Documents({ subject, selectedItems = [] }) {
     [subject.items, selectedItems]
   );
 
+  // Get ordered document names from subject.documents
+  // Any unlisted documents are appended at the end
+  const orderedDocNames = useMemo(() => {
+    if (!subject.documents || subject.documents.length === 0) {
+      return Object.keys(documents);
+    }
+
+    const orderedNames = subject.documents
+      .map(doc => doc.name)
+      .filter(name => documents[name]);
+
+    // Find any documents that aren't in the ordered list
+    const allDocNames = Object.keys(documents);
+    const unlistedDocs = allDocNames.filter(name => !orderedNames.includes(name));
+
+    return [...orderedNames, ...unlistedDocs];
+  }, [subject.documents, documents]);
+
   // Initialize all docs as expanded
   useEffect(() => {
     if (selectedItems && selectedItems.length > 0) {
@@ -185,20 +203,6 @@ export default function Documents({ subject, selectedItems = [] }) {
       );
     });
   };
-
-  // Get ordered document names from subject.documents
-  // Any unlisted documents are appended at the end
-  const orderedDocNames = useMemo(() => {
-    const orderedNames = subject.documents
-      .map(doc => doc.name)
-      .filter(name => documents[name]);
-
-    // Find any documents that aren't in the ordered list
-    const allDocNames = Object.keys(documents);
-    const unlistedDocs = allDocNames.filter(name => !orderedNames.includes(name));
-
-    return [...orderedNames, ...unlistedDocs];
-  }, [subject.documents, documents]);
 
   return (
     <div className="space-y-4">
