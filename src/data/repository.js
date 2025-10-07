@@ -16,11 +16,11 @@ const subject = {
   icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWZvbGRlci1naXQyLWljb24gbHVjaWRlLWZvbGRlci1naXQtMiI+PHBhdGggZD0iTTkgMjBINGEyIDIgMCAwIDEtMi0yVjVhMiAyIDAgMCAxIDItMmgzLjlhMiAyIDAgMCAxIDEuNjkuOWwuODEgMS4yYTIgMiAwIDAgMCAxLjY3LjlIMjBhMiAyIDAgMCAxIDIgMnY1Ii8+PGNpcmNsZSBjeD0iMTMiIGN5PSIxMiIgcj0iMiIvPjxwYXRoIGQ9Ik0xOCAxOWMtMi44IDAtNS0yLjItNS01djgiLz48Y2lyY2xlIGN4PSIyMCIgY3k9IjE5IiByPSIyIi8+PC9zdmc+",
   questions: [
     {
-      question: "What is the visibility of this repository? Select all that apply.",
+      question: "Who can see this repository? Select all that apply.",
       label: "Visibility",
       attributes: [
-        { name: "Internal", value: INTERNAL },
-        { name: "External (public facing)", value: EXTERNAL },
+        { name: "People inside the company but outside the team", value: INTERNAL },
+        { name: "People outside the company (public facing, open source, etc)", value: EXTERNAL },
       ],
     },
     {
@@ -39,10 +39,12 @@ const subject = {
       attributes: [
         { name: "Installed", value: INSTALLED },
         { name: "Deployed", value: DEPLOYED },
-        { name: "Called", value: CALLED },
+        { name: "Called Remotely/Hosted", value: CALLED },
+        // TODO add released?
       ],
     },
   ],
+  // TODO list out documents here so we can manage the order?
   items: [
     {
       name: "Core",
@@ -51,7 +53,7 @@ const subject = {
           name: "One Liner",
           detail: {
             purpose: "Describe the purpose of this repository in on or two sentences in a tagline format.",
-            instructions: "REPLACE ME with the tagline",
+            instructions: "REPLACE ME with a one-line description or tagline of what the software in this repository is.",
             document: "README",
             section: "Repo Name",
           }
@@ -60,7 +62,7 @@ const subject = {
           name: "Description",
           detail: {
             purpose: "A longer description of the contents of this repository.",
-            instructions: "REPLACE ME with a description of this software",
+            instructions: "REPLACE ME with a lengthier description of this software.",
             document: "README",
             section: "Repo Name",
           },
@@ -69,9 +71,37 @@ const subject = {
           name: "Background",
           detail: {
             purpose: "Background information useful for understanding why the repository was created or needed.",
-            instructions: "REPLACE ME with the background information about why this repository was created and the story behind it",
+            instructions: "REPLACE ME with the background information about why this repository was created and the story behind it.",
             document: "README",
             section: "Repo Name",
+          },
+        },
+        {
+          // TODO move this to a bottom section?
+          name: "License",
+          detail: {
+            purpose: "Describe the license under which this software is distributed.",
+            instructions: "REPLACE ME with the license under which this software is distributed.",
+            document: "LICENSE",
+          },
+        },
+        {
+          // TODO move this to a bottom section?
+          name: "Change Log",
+          detail: {
+            purpose: "Provide a list of changes for each release.",
+            instructions: "REPLACE ME with a list of changes for each release.",
+            document: "CHANGELOG",
+          },
+        },
+        {
+          // TODO move this to a bottom section?
+          name: "Roadmap",
+          detail: {
+            purpose: "Describe the direction this software will be developed in.",
+            instructions: "REPLACE ME with a roadmap showing what is coming. Also include information about what will not be coming or added to this software.",
+            document: "ROADMAP",
+            attributes: [EXTERNAL],
           },
         },
       ],
@@ -95,9 +125,27 @@ const subject = {
               name: "Test Coverage",
               detail: {
                 purpose: "Show the current percentage of test coverage so people can feel confident using this software.",
-                instructions: "REPLACE ME with a badge showing the current test coverage percentage",
+                instructions: "REPLACE ME with a badge showing the current test coverage percentage.",
                 document: "README",
                 attributes: [EXTERNAL],
+              },
+            },
+            {
+              name: "Repository Health",
+              detail: {
+                purpose: "Show the current repository health or grade so people can feel confident using this software.",
+                instructions: "REPLACE ME with a badge showing the current repository health or grade.",
+                document: "README",
+                attributes: [EXTERNAL],
+              },
+            },
+            {
+              name: "Documentation",
+              detail: {
+                purpose: "Show a badge linking to the current documentation.",
+                instructions: "REPLACE ME with a badge linking to the current documentation.",
+                document: "README",
+                attributes: [EXTERNAL, LIBRARY],
               },
             },
           ],
@@ -106,7 +154,7 @@ const subject = {
           name: "Benefits",
           detail: {
             purpose: "List the benefits the software in this repository has so that people can understand how the software can help them.",
-            instructions: "REPLACE ME with a summary and/or list of benefits that this software provides",
+            instructions: "REPLACE ME with a summary and/or list of benefits that this software provides.",
             document: "README",
             section: "Repo Name",
           },
@@ -115,7 +163,7 @@ const subject = {
           name: "Features",
           detail: {
             purpose: "List the features the software in this repository has so that people can understand what the software does.",
-            instructions: "REPLACE ME with a list of the most important features",
+            instructions: "REPLACE ME with a list of the most important features.",
             document: "README",
             section: "Repo Name",
           },
@@ -134,7 +182,7 @@ const subject = {
           name: "Demo Link",
           detail: {
             purpose: "Link to a demo of the software in action so that people can see and try the software.",
-            instructions: "REPLACE ME with a link to a live demo",
+            instructions: "REPLACE ME with a link to a live demo.",
             document: "README",
             attributes: [EXTERNAL, APPLICATION],
             section: "Repo Name",
@@ -151,7 +199,7 @@ const subject = {
           },
         },
         {
-          name: "Change Log",
+          name: "Change Log Link",
           detail: {
             purpose: "Show people information about current and past releases.",
             instructions: "REPLACE ME with a link to the changelog.",
@@ -160,12 +208,12 @@ const subject = {
           },
         },
         {
-          name: "License",
+          name: "License Link",
           detail: {
-            purpose: "Show people the license that this software is licensed under",
-            instructions: "REPLACE ME with a link to the license.",
+            purpose: "Show people the license that this software is licensed under.",
+            instructions: "REPLACE ME with a link to the license so that people can see early on what license the software uses.",
             document: "README",
-            section: "License",
+            section: "Repo Name",
             attributes: [EXTERNAL],
           },
         },
@@ -188,7 +236,7 @@ const subject = {
           name: "Usage Examples",
           detail: {
             purpose: "Show how to use the various features of this library.",
-            instructions: "REPLACE ME with one or more code blocks showing how to use the main APIs this library provides",
+            instructions: "REPLACE ME with one or more code blocks showing how to use the main APIs this library provides.",
             document: "README",
             section: "Repo Name#Using",
             attributes: [LIBRARY],
@@ -198,7 +246,7 @@ const subject = {
           name: "Download Instructions",
           detail: {
             purpose: "Let the person know how to download this software.",
-            instructions: "REPLACE ME with a description of how to download this software, along with a link.",
+            instructions: "REPLACE ME with instructions of how to download this software, along with a link.",
             document: "README",
             section: "Repo Name#Using",
             attributes: [INSTALLED],
@@ -208,7 +256,7 @@ const subject = {
           name: "Installation Instructions",
           detail: {
             purpose: "Let the person know how to install this software.",
-            instructions: "REPLACE ME with a description of how to install this software.",
+            instructions: "REPLACE ME with instructions of how to install this software.",
             document: "README",
             section: "Repo Name#Using",
             attributes: [INSTALLED],
@@ -225,6 +273,16 @@ const subject = {
           },
         },
         {
+          name: "API Documentation",
+          detail: {
+            purpose: "Document or link to the API interfaces of this application.",
+            instructions: "REPLACE ME with a detailed set of documentation covering the API or a link to the same.",
+            document: "README",
+            section: "Repo Name#Using",
+            attributes: [API],
+          },
+        },
+        {
           name: "Support Information",
           detail: {
             purpose: "Let the person know how they can get support.",
@@ -233,43 +291,6 @@ const subject = {
             document: "README",
             section: "Repo Name#Using",
             attributes: [EXTERNAL],
-          },
-        },
-        {
-          name: "API Documentation",
-          detail: {
-            purpose: "Document the API interfaces of this application.",
-            instructions: "REPLACE ME with a detailed set of documentation covering the API.",
-            document: "README",
-            section: "Repo Name#Using",
-            attributes: [API],
-          },
-        },
-        {
-          name: "API Documentation Link",
-          detail: {
-            purpose: "Link to the API documentation for this application.",
-            instructions: "REPLACE ME with a link to the API documentation.",
-            document: "README",
-            section: "Repo Name#Using",
-            attributes: [API],
-          },
-        },
-        {
-          name: "Change Log",
-          detail: {
-            purpose: "Provide a list of changes for each release.",
-            instructions: "REPLACE ME with a list of changes for each release.",
-            document: "CHANGELOG",
-            section: "Repo Name#Using",
-          },
-        },
-        {
-          name: "License",
-          detail: {
-            purpose: "Detail the license that this software is provided under.",
-            instructions: "REPLACE ME with a standard license.",
-            document: "LICENSE",
           },
         },
       ],
@@ -286,6 +307,7 @@ const subject = {
                 purpose: "Describe the high level architecture of the software in this repository.",
                 instructions: "REPLACE ME with a high level summary of the architecture of the software, focusing on the 1-3 key items a developer should be aware of.",
                 document: "ARCHITECTURE",
+                section: "Architecture",
               },
             },
             {
@@ -294,28 +316,37 @@ const subject = {
                 purpose: "Provide a high level overview of the repository and how it is laid out.",
                 instructions: "REPLACE ME with a high level description of how the code is laid out.",
                 document: "ARCHITECTURE",
-                section: "Overview",
+                section: "Architecture#Overview",
               },
             },
             {
-              name: "Code-Map",
+              name: "Code Map",
               detail: {
                 purpose: "List key code files and/or entry points and document their use and purpose.",
                 instructions: "REPLACE ME with a list of the key code files and or entry points. For each one describe their use, purpose, and any other details that are essential to understand.",
                 document: "ARCHITECTURE",
-                section: "Code Map",
+                section: "Architecture#Code Map",
               },
             },
             {
-              name: "Cross-Cutting Concerns",
+              name: "Scope",
+              detail: {
+                purpose: "Define the scope and system boundaries of the software, specifying what it should and should not do.",
+                instructions: "REPLACE ME with a list of what is and is not in scope of the software, including any boundaries in the case of a deployed system.",
+                document: "ARCHITECTURE",
+                section: "Architecture#Scope",
+              },
+            },
+            {
+              name: "Cross Cutting Concerns",
               items: [
                 {
-                  name: "Cross-Cutting Concerns",
+                  name: "Overview",
                   detail: {
                     purpose: "Describe how cross-cutting concerns, such as logging and telemetry, are handled.",
                     instructions: "REPLACE ME with a high-level description of how cross-cutting concerns are handled (i.e. shared lib, injection, auto-instrumentation, etc).",
                     document: "ARCHITECTURE",
-                    section: "Cross Cutting Concerns",
+                    section: "Architecture#Cross Cutting Concerns",
                   },
                 },
                 {
@@ -324,7 +355,7 @@ const subject = {
                     purpose: "Describe how logging is handled.",
                     instructions: "REPLACE ME with a description of how logging is to be handled, including setting/using appropriate logging levels, what to log, how to avoid logging sensitive information, etc. Also describe how logs are collected (if applicable).",
                     document: "ARCHITECTURE",
-                    section: "Cross Cutting Concerns#Logging",
+                    section: "Architecture#Cross Cutting Concerns#Logging",
                   },
                 },
                 {
@@ -333,7 +364,7 @@ const subject = {
                     purpose: "Describe how errors are handled.",
                     instructions: "REPLACE ME with a description of how errors are handled internally and surfaced externally. Provide a summary of the philosophy behind the logging methodology, as well as examples where appropriate. Also describe how errors are collected and monitored (if applicable).",
                     document: "ARCHITECTURE",
-                    section: "Cross Cutting Concerns#Error Handling",
+                    section: "Architecture#Cross Cutting Concerns#Error Handling",
                   },
                 },
               ],
@@ -344,16 +375,7 @@ const subject = {
                 purpose: "List any design decisions or invariants that a developer must be aware of when developing the software.",
                 instructions: "REPLACE ME with a list of important design decisions or invariants that are to be kept in mind when developing.",
                 document: "ARCHITECTURE",
-                section: "Design Decisions",
-              },
-            },
-            {
-              name: "Scope",
-              detail: {
-                purpose: "Define the scope and system boundaries of the software, specifying what it should and should not do.",
-                instructions: "REPLACE ME with a list of what is and is not in scope of the software, including any boundaries in the case of a deployed system.",
-                document: "ARCHITECTURE",
-                section: "Scope",
+                section: "Architecture#Design Decisions",
               },
             },
             {
@@ -362,7 +384,7 @@ const subject = {
                 purpose: "Define how secrets are treated and handled when developing and/or using the software.",
                 instructions: "REPLACE ME with a summary of how secrets are handled, including how they are passed in on startup, handled internally, and/or output.",
                 document: "ARCHITECTURE",
-                section: "Secrets",
+                section: "Architecture#Secrets",
               },
             },
           ],
@@ -374,27 +396,28 @@ const subject = {
               name: "One Liner",
               detail: {
                 purpose: "Information on how to run the software when developing.",
-                instructions: "REPLACE ME with a one-liner describing where the software is run when developing it",
+                instructions: "REPLACE ME with a one liner describing where the software is run when developing it.",
                 document: "README",
                 section: "Repo Name#Developing",
+                attributes: [API],
               },
             },
             {
               name: "Prerequisites",
               detail: {
-                purpose: "List any prerequisites required to run or develop the software locally.",
+                purpose: "List any prerequisites required to run or develop the software.",
                 instructions: "REPLACE ME with a list of the prerequisites that I need to satisfy before running this software while developing it. Include secrets, permissions, software required, etc...",
                 document: "README",
                 section: "Repo Name#Developing#Prerequisites",
               },
             },
             {
-              name: "Installation",
+              name: "Setup",
               detail: {
-                purpose: "List how to install the software and any dependencies required to run and develop locally.",
-                instructions: "REPLACE ME with a set of steps to install the software so it can be run for development.",
+                purpose: "List how to set up the software and any dependencies required to run and develop.",
+                instructions: "REPLACE ME with a set of steps to set up the software so it can be run for development.",
                 document: "README",
-                section: "Repo Name#Developing#Installation",
+                section: "Repo Name#Developing#Setup",
               },
             },
             {
@@ -532,12 +555,12 @@ const subject = {
               },
             },
             {
-              name: "Targets/Environments",
+              name: "Environments",
               detail: {
                 purpose: "Describe the various deployment targets and/or environments.",
-                instructions: "REPLACE ME with a list if the deployment targets and/or environments. For each one list its identifier, purpose, and include a link to the software running in that environment (if applicable)",
+                instructions: "REPLACE ME with a list if the deployment targets and/or environments. For each one list its identifier, purpose, and include a link to the software running in that environment (if applicable).",
                 document: "README",
-                section: "Repo Name#Deploying#Targets",
+                section: "Repo Name#Deploying#Environments",
                 attributes: [DEPLOYED],
               },
             },
@@ -545,7 +568,7 @@ const subject = {
               name: "Instructions",
               detail: {
                 purpose: "List out the steps (manual and automated) to deploy to a specific environment.",
-                instructions: "REPLACE ME with a list of steps to deploy to a target environment",
+                instructions: "REPLACE ME with a list of steps to deploy to a target environment.",
                 document: "README",
                 section: "Repo Name#Deploying#Instructions",
                 attributes: [DEPLOYED],
@@ -584,13 +607,15 @@ const subject = {
             purpose: "Provide a high-level invitation to contribute.",
             instructions: "REPLACE ME with a high-level invitation to contribute.",
             document: "CONTRIBUTING",
+            section: "Contributing",
+            attributes: [EXTERNAL],
           },
         },
         {
           name: "Who Can Contribute",
           detail: {
             purpose: "Provide a list of requirements that must be met to contribute.",
-            instructions: "REPLACE ME with a list of requirements that must be met to contribute.",
+            instructions: "REPLACE ME with a list of requirements that must be met to contribute. Include a link to the code of conduct if applicable.",
             document: "CONTRIBUTING",
             section: "Contributing",
             attributes: [EXTERNAL],
@@ -666,7 +691,7 @@ const subject = {
             purpose: "List the authors and/or notable contributors of the software in this repository",
             instructions: "REPLACE ME with a list of notable authors and/or contributors. List the role for each individual or entity.",
             document: "README",
-            section: "Repo Name#Contributors",
+            section: "Repo Name#Contributing",
             attributes: [EXTERNAL],
           },
         },
