@@ -18,9 +18,6 @@ export default function Documentation({
   selectedItems = [],
   onItemsChange = () => {}
 }) {
-
-  if (!subject) return null;
-
   return (
     <div className="min-h-screen lg:h-screen bg-white flex flex-col lg:overflow-hidden">
       <Header breadcrumb={subject.name} />
