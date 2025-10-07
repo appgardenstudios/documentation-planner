@@ -10,10 +10,8 @@ export default function HomeOptions({
 
   const hasQuestions = subject.questions && subject.questions.length > 0;
 
-  // Check if at least one option is selected (only required if there are questions)
-  const hasSelectedOptions = hasQuestions
-    ? Object.values(selectedOptions).some(values => values && values.length > 0)
-    : true; // Always enabled if no questions
+  // Button is always enabled - users can proceed without selecting options
+  const hasSelectedOptions = true;
 
   return (
     <div className="container max-w-2xl mx-auto mt-12 mb-16">

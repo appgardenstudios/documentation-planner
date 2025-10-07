@@ -10,7 +10,7 @@ export default function Footer() {
       >
         Hyaline.dev
       </a>
-      {' '}- Keep your documentation up-to-date with each PR.
+      {' '}- Keep your documentation up-to-date with each pull request.
     </footer>
   );
 }

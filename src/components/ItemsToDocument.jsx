@@ -55,17 +55,49 @@ export default function ItemsToDocument({
   // Track which categories are expanded
   const [expandedCategories, setExpandedCategories] = useState(new Set());
 
-  // Filter items based on selected attributes (memoized to prevent infinite loops)
-  const filteredItems = useMemo(() => {
-    return filterItemsByAttributes(items, selectedAttributes);
-  }, [items, selectedAttributes]);
+  // No longer filter items - show all items
+  const filteredItems = items;
 
-  // Initialize all categories as expanded when items or attributes change
+  // Initialize all categories as expanded when items change
   useEffect(() => {
     const allCategories = new Set(filteredItems.map(item => item.name));
     setExpandedCategories(allCategories);
+  }, [filteredItems]);
+
+  // Auto-check items that match selectedAttributes when they change
+  useEffect(() => {
+    if (selectedAttributes.length === 0 || selectedItems.length > 0) {
+      // Don't auto-check if no attributes selected or if user has already made selections
+      return;
+    }
+
+    const autoSelectedPaths = [];
+
+    const collectMatchingLeafPaths = (items, parentPath = '') => {
+      for (const item of items) {
+        const currentPath = parentPath ? `${parentPath}>${item.name}` : item.name;
+
+        if (item.items && item.items.length > 0) {
+          // Recursively check children
+          collectMatchingLeafPaths(item.items, currentPath);
+        } else if (item.detail) {
+          // Leaf node - check if it matches selected attributes
+          const itemAttributes = item.detail.attributes || [];
+          if (itemAttributes.length === 0 ||
+              itemAttributes.every(attr => selectedAttributes.includes(attr))) {
+            autoSelectedPaths.push(currentPath);
+          }
+        }
+      }
+    };
+
+    collectMatchingLeafPaths(items);
+
+    if (autoSelectedPaths.length > 0) {
+      onSelectionChange(autoSelectedPaths);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [items, selectedAttributes]);
+  }, [selectedAttributes]);
 
   const toggleCategory = (categoryName) => {
     setExpandedCategories(prev => {

@@ -16,7 +16,7 @@ describe('Home component', () => {
     render(<Home />);
     expect(screen.getByText(/Built with ♥ by/i)).toBeInTheDocument();
     expect(screen.getByText('Hyaline.dev')).toBeInTheDocument();
-    expect(screen.getByText(/Keep your documentation up-to-date with each PR/i)).toBeInTheDocument();
+    expect(screen.getByText(/Keep your documentation up-to-date with each pull request/i)).toBeInTheDocument();
   });
 
   test('footer is positioned at bottom', () => {

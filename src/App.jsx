@@ -48,7 +48,6 @@ export default function App() {
         selectedOptions={selectedOptions}
         selectedItems={selectedItems}
         onItemsChange={handleItemsChange}
-        onOptionsChange={setSelectedOptions}
       />
     );
   }

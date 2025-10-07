@@ -87,22 +87,11 @@ describe('HomeOptions', () => {
     expect(onPlanClick).toHaveBeenCalled();
   });
 
-  test('button is disabled when no options are selected', () => {
+  test('button is always enabled', () => {
     render(<HomeOptions subject={mockSubject} />);
 
     const button = screen.getByRole('button', { name: /Plan My Documentation/i });
-    expect(button).toBeDisabled();
-  });
-
-  test('button is enabled when at least one option is selected', () => {
-    const selectedOptions = {
-      'What is the visibility of this repository? Select all that apply.': ['INTERNAL']
-    };
-
-    render(<HomeOptions subject={mockSubject} selectedOptions={selectedOptions} />);
-
-    const button = screen.getByRole('button', { name: /Plan My Documentation/i });
-    expect(button).not.toBeDisabled();
+    expect(button).toBeEnabled();
   });
 
   test('button is centered', () => {

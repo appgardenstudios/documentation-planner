@@ -768,12 +768,17 @@ const subject = {
     },
     {
       name: "Change Log",
-      detail: {
-        purpose: "Describe significant changes that have occurred in this system over time.",
-        instructions: "REPLACE ME with a list of significant changes that have occurred in this system over time.",
-        document: "SYSTEM",
-        section: "System Name#Change Log",
-      }
+      items: [
+        {
+          name: "Change Log",
+          detail: {
+            purpose: "Describe significant changes that have occurred in this system over time.",
+            instructions: "REPLACE ME with a list of significant changes that have occurred in this system over time.",
+            document: "SYSTEM",
+            section: "System Name#Change Log",
+          }
+        }
+      ]
     },
   ]
 };

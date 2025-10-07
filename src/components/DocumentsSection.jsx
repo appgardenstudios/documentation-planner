@@ -91,12 +91,14 @@ export default function DocumentsSection({ items = [] }) {
   const renderSectionContent = (sections, level = 1) => {
     return Object.entries(sections).map(([sectionName, section]) => {
       const HeaderTag = `h${Math.min(level, 6)}`;
+      const headerPrefix = '#'.repeat(level);
 
       return (
         <div key={sectionName} className="mb-4">
           <HeaderTag className={`font-semibold text-gray-900 mb-2 ${
             level === 1 ? 'text-xl font-bold' : level === 2 ? 'text-base' : level === 3 ? 'text-sm' : 'text-xs'
           }`}>
+            <span className="text-gray-400 mr-2">{headerPrefix}</span>
             {sectionName}
           </HeaderTag>
 

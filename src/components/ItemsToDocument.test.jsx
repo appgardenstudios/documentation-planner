@@ -64,15 +64,21 @@ describe('ItemsToDocument', () => {
     expect(screen.queryByText('One Liner')).not.toBeInTheDocument();
   });
 
-  test('filters items by selected attributes', () => {
+  test('shows all items regardless of attributes', () => {
     render(<ItemsToDocument items={mockItems} selectedAttributes={['EXTERNAL']} />);
 
-    // Should show One Liner (EXTERNAL) and Description (no attributes)
+    // Should show all items regardless of attributes
     expect(screen.getByText('One Liner')).toBeInTheDocument();
     expect(screen.getByText('Description')).toBeInTheDocument();
+    expect(screen.getByText('Benefits')).toBeInTheDocument();
+  });
 
-    // Should not show Benefits (INTERNAL)
-    expect(screen.queryByText('Benefits')).not.toBeInTheDocument();
+  test('shows all categories', () => {
+    render(<ItemsToDocument items={mockItems} selectedAttributes={['EXTERNAL']} />);
+
+    // All categories should appear
+    expect(screen.getByText('Core')).toBeInTheDocument();
+    expect(screen.getByText('Marketing')).toBeInTheDocument();
   });
 
   test('renders checkboxes for items', () => {
@@ -135,12 +141,5 @@ describe('ItemsToDocument', () => {
 
     // Should add the selected item
     expect(onSelectionChange).toHaveBeenCalledWith(['Core>One Liner']);
-  });
-
-  test('hides categories with no matching children', () => {
-    render(<ItemsToDocument items={mockItems} selectedAttributes={['EXTERNAL']} />);
-
-    // Marketing should not appear since Benefits requires INTERNAL
-    expect(screen.queryByText('Marketing')).not.toBeInTheDocument();
   });
 });
