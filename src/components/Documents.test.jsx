@@ -2,45 +2,52 @@ import { render, screen, within } from '../utils/testUtils';
 import userEvent from '@testing-library/user-event';
 import Documents from './Documents';
 
-const mockItems = [
-  {
-    name: 'Core',
-    items: [
-      {
-        name: 'One Liner',
-        detail: {
-          purpose: 'Test',
-          instructions: 'Add a tagline here',
-          document: 'README',
-          section: 'Repo Name'
+const mockSubject = {
+  name: 'Test Subject',
+  documents: [
+    { name: 'README' },
+    { name: 'LICENSE' }
+  ],
+  items: [
+    {
+      name: 'Core',
+      items: [
+        {
+          name: 'One Liner',
+          detail: {
+            purpose: 'Test',
+            instructions: 'Add a tagline here',
+            document: 'README',
+            section: 'Repo Name'
+          }
+        },
+        {
+          name: 'Description',
+          detail: {
+            purpose: 'Test',
+            instructions: 'Add description here',
+            usage: 'This should be concise',
+            document: 'README',
+            section: 'Repo Name'
+          }
         }
-      },
-      {
-        name: 'Description',
-        detail: {
-          purpose: 'Test',
-          instructions: 'Add description here',
-          usage: 'This should be concise',
-          document: 'README',
-          section: 'Repo Name'
+      ]
+    },
+    {
+      name: 'Using',
+      items: [
+        {
+          name: 'License',
+          detail: {
+            purpose: 'Test',
+            instructions: 'Add license text',
+            document: 'LICENSE'
+          }
         }
-      }
-    ]
-  },
-  {
-    name: 'Using',
-    items: [
-      {
-        name: 'License',
-        detail: {
-          purpose: 'Test',
-          instructions: 'Add license text',
-          document: 'LICENSE'
-        }
-      }
-    ]
-  }
-];
+      ]
+    }
+  ]
+};
 
 const mockSelectedItems = [
   'Core > One Liner',
@@ -50,7 +57,7 @@ const mockSelectedItems = [
 
 describe('Documents', () => {
   test('groups items by document', () => {
-    render(<Documents items={mockItems} selectedItems={mockSelectedItems} />);
+    render(<Documents subject={mockSubject} selectedItems={mockSelectedItems} />);
 
     expect(screen.getByText('README')).toBeInTheDocument();
     expect(screen.getByText('LICENSE')).toBeInTheDocument();
@@ -58,7 +65,7 @@ describe('Documents', () => {
 
   test('renders expand/collapse for each document', async () => {
     const user = userEvent.setup();
-    render(<Documents items={mockItems} selectedItems={mockSelectedItems} />);
+    render(<Documents subject={mockSubject} selectedItems={mockSelectedItems} />);
 
     const readmeButton = screen.getByRole('button', { name: /README/i });
 
@@ -73,28 +80,28 @@ describe('Documents', () => {
   });
 
   test('renders "Copy as Markdown" button for each document', () => {
-    render(<Documents items={mockItems} selectedItems={mockSelectedItems} />);
+    render(<Documents subject={mockSubject} selectedItems={mockSelectedItems} />);
 
     const copyButtons = screen.getAllByRole('button', { name: /Copy as Markdown/i });
     expect(copyButtons.length).toBeGreaterThan(0);
   });
 
   test('renders items in correct sections', () => {
-    render(<Documents items={mockItems} selectedItems={mockSelectedItems} />);
+    render(<Documents subject={mockSubject} selectedItems={mockSelectedItems} />);
 
     // Should show section headers
     expect(screen.getByText('Repo Name')).toBeInTheDocument();
   });
 
   test('renders items with source labels', () => {
-    const { container } = render(<Documents items={mockItems} selectedItems={mockSelectedItems} />);
+    const { container } = render(<Documents subject={mockSubject} selectedItems={mockSelectedItems} />);
 
     // Check for source label (e.g., "Core > One Liner")
     expect(screen.getByText('Core > One Liner')).toBeInTheDocument();
   });
 
   test('renders items without section at top of document', () => {
-    render(<Documents items={mockItems} selectedItems={mockSelectedItems} />);
+    render(<Documents subject={mockSubject} selectedItems={mockSelectedItems} />);
 
     // LICENSE has no section, should appear at top - just check it exists
     expect(screen.getByText('LICENSE')).toBeInTheDocument();
@@ -111,7 +118,7 @@ describe('Documents', () => {
       value: { writeText }
     });
 
-    render(<Documents items={mockItems} selectedItems={mockSelectedItems} />);
+    render(<Documents subject={mockSubject} selectedItems={mockSelectedItems} />);
 
     const copyButtons = screen.getAllByRole('button', { name: /Copy as Markdown/i });
     await user.click(copyButtons[0]);
@@ -120,7 +127,55 @@ describe('Documents', () => {
   });
 
   test('shows empty state when no items provided', () => {
-    render(<Documents items={[]} />);
+    render(<Documents subject={{ items: [] }} />);
     expect(screen.getByText(/No items selected/i)).toBeInTheDocument();
+  });
+
+  test('renders documents in specified order', () => {
+    const subjectWithOrder = {
+      ...mockSubject,
+      documents: [
+        { name: 'LICENSE' },
+        { name: 'README' }
+      ]
+    };
+
+    const { container } = render(
+      <Documents
+        subject={subjectWithOrder}
+        selectedItems={mockSelectedItems}
+      />
+    );
+
+    // Get all document headers
+    const docHeaders = screen.getAllByRole('button', { name: /README|LICENSE/i });
+
+    // LICENSE should come before README based on documentOrder
+    expect(docHeaders[0]).toHaveTextContent('LICENSE');
+    expect(docHeaders[1]).toHaveTextContent('README');
+  });
+
+  test('includes unlisted documents at the end', () => {
+    const subjectWithPartialOrder = {
+      ...mockSubject,
+      documents: [
+        { name: 'README' }
+        // LICENSE is not listed, but should still appear
+      ]
+    };
+
+    render(
+      <Documents
+        subject={subjectWithPartialOrder}
+        selectedItems={mockSelectedItems}
+      />
+    );
+
+    // Get all document headers
+    const docHeaders = screen.getAllByRole('button', { name: /README|LICENSE/i });
+
+    // README should come first (in the order), LICENSE should come after (unlisted)
+    expect(docHeaders[0]).toHaveTextContent('README');
+    expect(docHeaders[1]).toHaveTextContent('LICENSE');
   });
 });

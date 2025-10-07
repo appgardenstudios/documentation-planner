@@ -29,18 +29,18 @@ function DocumentItem({ item }) {
  * Component for displaying generated documentation organized by document
  *
  * @param {Object} props
- * @param {import('../data/index.js').Item[]} props.items - Items
+ * @param {import('../data/index.js').Subject} props.subject - The subject being documented
  * @param {string[]} props.selectedItems - Array of selected item paths
 
  */
-export default function Documents({ items = [], selectedItems = [] }) {
+export default function Documents({ subject, selectedItems = [] }) {
   const [expandedDocs, setExpandedDocs] = useState(new Set());
   const [copiedDoc, setCopiedDoc] = useState(null);
   const copyTimeoutRef = useRef(null);
 
   const documents = useMemo(
-    () => getDocuments(items, selectedItems),
-    [items, selectedItems]
+    () => getDocuments(subject.items, selectedItems),
+    [subject.items, selectedItems]
   );
 
   // Initialize all docs as expanded
@@ -186,9 +186,23 @@ export default function Documents({ items = [], selectedItems = [] }) {
     });
   };
 
+  // Get ordered document names from subject.documents
+  // Any unlisted documents are appended at the end
+  const orderedDocNames = useMemo(() => {
+    const orderedNames = subject.documents
+      .map(doc => doc.name)
+      .filter(name => documents[name]);
+
+    // Find any documents that aren't in the ordered list
+    const allDocNames = Object.keys(documents);
+    const unlistedDocs = allDocNames.filter(name => !orderedNames.includes(name));
+
+    return [...orderedNames, ...unlistedDocs];
+  }, [subject.documents, documents]);
+
   return (
     <div className="space-y-4">
-      {Object.keys(documents).map(docName => {
+      {orderedDocNames.map(docName => {
         const isExpanded = expandedDocs.has(docName);
         const document = documents[docName];
 

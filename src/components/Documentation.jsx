@@ -46,7 +46,7 @@ export default function Documentation({
             <h2 className="text-xs font-semibold text-gray-500 tracking-wide mb-2">Documents</h2>
             <div className="lg:flex-1 lg:overflow-auto border border-gray-200 rounded-lg p-4 bg-white">
               <Documents
-                items={subject.items}
+                subject={subject}
                 selectedItems={selectedItems}
               />
             </div>
