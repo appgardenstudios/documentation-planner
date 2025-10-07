@@ -10,10 +10,6 @@
 
  */
 export default function SubjectTiles({ subjects = [], selectedSubject = null, onSelect = () => {} }) {
-  if (!subjects || subjects.length === 0) {
-    return null;
-  }
-
   return (
     <div className="flex flex-wrap gap-6 justify-center" role="radiogroup" aria-label="Select what you are documenting">
       {subjects.map((subject) => {
