@@ -1,4 +1,5 @@
 import Logo from '../assets/images/logo.svg';
+import GitHubIcon from '../assets/images/github.svg';
 
 /**
  * Header component with logo, title, and optional breadcrumb
@@ -38,6 +39,19 @@ export default function Header({ breadcrumb = null }) {
             </>
           )}
         </div>
+        <a
+          href="https://github.com/appgardenstudios/documentation-planner"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:opacity-70 transition-opacity"
+          aria-label="View on GitHub"
+        >
+          <img
+            src={GitHubIcon}
+            alt="GitHub"
+            className="h-6 w-6"
+          />
+        </a>
       </div>
     </header>
   );

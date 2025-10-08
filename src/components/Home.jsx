@@ -3,6 +3,7 @@ import SubjectTiles from './SubjectTiles';
 import Questions from './Questions';
 import Footer from './Footer';
 import Logo from '../assets/images/logo.svg';
+import GitHubIcon from '../assets/images/github.svg';
 
 /**
  * Home page component with subject selection and questions
@@ -43,7 +44,24 @@ export default function Home({
   const hasQuestions = selectedSubject?.questions && selectedSubject.questions.length > 0;
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col relative">
+      {/* GitHub Link */}
+      <div className="absolute top-4 right-4">
+        <a
+          href="https://github.com/appgardenstudios/documentation-planner"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:opacity-70 transition-opacity"
+          aria-label="View on GitHub"
+        >
+          <img
+            src={GitHubIcon}
+            alt="GitHub"
+            className="h-6 w-6"
+          />
+        </a>
+      </div>
+
       {/* Hero Section */}
       <div className="text-center py-24 px-4">
         <div className="flex items-center justify-center gap-4 mb-4">

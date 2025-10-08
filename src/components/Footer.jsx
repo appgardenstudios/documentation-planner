@@ -14,7 +14,7 @@ export default function Footer() {
           <a
             href="https://www.hyaline.dev"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             className="text-blue-600 hover:text-blue-700 hover:underline"
           >
             Hyaline.dev
