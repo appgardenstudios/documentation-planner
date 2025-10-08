@@ -2,7 +2,7 @@
 A collection of items to consider documenting for a range of subjects encountered by software product engineering teams and organizations.
 
 <img src="./img/readme-home.png" width="400px"> <img src="./img/readme-repository.png" width="400px">
-<p align="center">[TODO.hyaline.dev](https://TODO.hyaline.dev)</p>
+<p align="center"><a href="https://TODO.hyaline.dev">TODO.hyaline.dev</a></p>
 
 The philosophy behind this tool is to provide a superset of items that should be considered for inclusion into the documentation for certain subjects. It is not intended that every subject should contain every item.
 
