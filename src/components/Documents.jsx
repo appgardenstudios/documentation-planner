@@ -213,7 +213,7 @@ export default function Documents({ subject, selectedItems = [] }) {
         return (
           <div key={docName} className="border border-gray-200 rounded-lg">
             {/* Document header */}
-            <div className="bg-gray-50 border-b border-gray-200 flex items-center justify-between">
+            <div className={`bg-gray-50 border-b border-gray-200 flex items-center justify-between ${isExpanded ? 'rounded-t-lg' : 'rounded-lg'}`}>
               <button
                 onClick={() => toggleDoc(docName)}
                 className="flex-1 flex items-center gap-2 text-left font-medium text-gray-900 p-3 cursor-pointer"
