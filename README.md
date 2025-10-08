@@ -54,7 +54,7 @@ npm run build
 Suggestions and additions are welcome. Please open an issue to discuss your suggestion or fork and open a PR.
 
 A few things to note:
-- This is an opinionated collection, so it is up to us as authors to decide wether or not to accept any changes.
+- This is an opinionated collection, so it is up to the maintainers to decide wether or not to accept any changes.
 - The software in this repo is licensed under MIT and the content under CC-SA, so any additions or changes will need to be contributed under those licenses.
 - Examples and/or usage information must be properly attributed and the source author must allow incorporation into this work.
 
