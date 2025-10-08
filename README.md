@@ -1,4 +1,4 @@
-# Documentation Planner
+# <img src="./img/readme-logo.png" height="24px"> Documentation Planner
 A collection of items to consider documenting for a range of subjects encountered by software product engineering teams and organizations.
 
 <img src="./img/readme-home.png" width="400px"> <img src="./img/readme-repository.png" width="400px">
@@ -10,7 +10,7 @@ This was created because we were having to research and plan out documentation a
 ## Using
 Please visit https://TODO.hyaline.dev to use the documentation planner tool.
 
-If you have issues or suggestions please feel free to file a GitHub issue or contact us at support@hyaline.dev.
+If you have issues or suggestions please feel free to create a [GitHub issue](https://github.com/appgardenstudios/documentation-planner/issues) or contact us at support@hyaline.dev.
 
 ## Developing
 
