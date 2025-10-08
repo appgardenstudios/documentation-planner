@@ -44,7 +44,7 @@ import team from './team.js';
  * @property {Array<Example>} [examples] - Examples
  * @property {Array<string>} [references] - References (urls)
  * @property {string} document - The document this item should belong to
- * @property {string} [section] - The section this item should belong to
+ * @property {string} [section] - The section this item should belong to. Sections are "#" separated for hierarchy (e.g. "Architecture#Overview")
  */
 
 /**
@@ -52,22 +52,6 @@ import team from './team.js';
  * @property {string} example - The example
  * @property {string} [reference] - The reference (url)
  * @property {string} [retrieved] - The date retrieved
- */
-
-/**
- * Document rendering:
- * Each item detail contains at least a document and optionally a section.
- * The section is a "#" separated string that denotes the place in the hierarchy.
- * 
- * When rendering items into documents they are rendered in the order they appear in a depth-first search.
- * Items that only have a document are rendered at the top of the document (after any existing items).
- * Items that have a section are rendered into that section (after any prior items have been rendered into that section).
- * 
- * Template:
- * ${instructions}
- * ${usage} // if present
- * Example: ${examples} // if present, loop
- * ${references} // e.g. [1][2]
  */
 
 /**

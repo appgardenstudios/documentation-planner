@@ -104,7 +104,7 @@ export default function Documents({ subject, selectedItems = [] }) {
     // Add root items first
     if (document.items && document.items.length > 0) {
       document.items.forEach(item => {
-        parts.push(item.detail.instructions);
+        parts.push(item.detail.instructions.trim());
         parts.push('\n\n');
       });
     }
@@ -123,7 +123,7 @@ export default function Documents({ subject, selectedItems = [] }) {
         // Add items in this section
         if (section.items && section.items.length > 0) {
           section.items.forEach(item => {
-            parts.push(item.detail.instructions);
+            parts.push(item.detail.instructions.trim());
             parts.push('\n\n');
           });
         }

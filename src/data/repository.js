@@ -45,7 +45,6 @@ const subject = {
         { name: "Installed", value: ATTR_INSTALLED },
         { name: "Deployed", value: ATTR_DEPLOYED },
         { name: "Called Remotely/Hosted", value: ATTR_CALLED },
-        // TODO add released?
       ],
     },
   ],
