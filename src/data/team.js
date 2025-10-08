@@ -351,8 +351,8 @@ const subject = {
         {
           name: "Release Checklist",
           detail: {
-            purpose: "List the steps to follow to release.",
-            instructions: "REPLACE ME with a list of steps needed to release. Provide links to product and/or system release documentation.",
+            purpose: "List the process and/or steps required to release.",
+            instructions: "REPLACE ME with the process to follow and/or the list of steps needed to release. Provide links to product and/or system release documentation, communication templates, process documentation, etc.",
             document: DOC_RELEASING_AND_DEPLOYMENT,
             section: "Team Name#Release",
           },
@@ -360,8 +360,8 @@ const subject = {
         {
           name: "Deployment Checklist",
           detail: {
-            purpose: "List the steps to follow to deploy.",
-            instructions: "REPLACE ME with a list of steps needed to deploy. Provide links to product and/or system deployment documentation.",
+            purpose: "List the process and/or steps required to deploy.",
+            instructions: "REPLACE ME with the process to follow and/or the list of steps needed to deploy. Provide links to product and/or system deployment documentation, communication templates, process documentation, etc.",
             document: DOC_RELEASING_AND_DEPLOYMENT,
             section: "Team Name#Deploy",
           },
@@ -369,8 +369,8 @@ const subject = {
         {
           name: "Rollback Checklist",
           detail: {
-            purpose: "List the steps to follow to roll back.",
-            instructions: "REPLACE ME with a list of steps needed to roll back. Provide links to product and/or system roll back documentation.",
+            purpose: "List the process and/or steps required to roll back.",
+            instructions: "REPLACE ME with the process to follow and/or the list of steps needed to roll back. Provide links to product and/or system roll back documentation, communication templates, process documentation, etc.",
             document: DOC_RELEASING_AND_DEPLOYMENT,
             section: "Team Name#Rollback",
           },

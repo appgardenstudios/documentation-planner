@@ -1,4 +1,3 @@
-const ATTR_INTERNAL = "Internal";
 const ATTR_EXTERNAL = "External";
 const ATTR_LIBRARY = "Library";
 const ATTR_APPLICATION = "Application";
@@ -6,7 +5,6 @@ const ATTR_API = "API";
 const ATTR_INFRASTRUCTURE = "Infrastructure";
 const ATTR_INSTALLED = "Installed";
 const ATTR_DEPLOYED = "Deployed";
-const ATTR_CALLED = "Called";
 
 const DOC_README = "README";
 const DOC_ARCHITECTURE = "ARCHITECTURE";
@@ -26,7 +24,6 @@ const subject = {
     {
       question: "Who can see this repository? Select all that apply.",
       attributes: [
-        { name: "People inside the company but outside the team", value: ATTR_INTERNAL },
         { name: "People outside the company (public facing, open source, etc)", value: ATTR_EXTERNAL },
       ],
     },
@@ -35,7 +32,7 @@ const subject = {
       attributes: [
         { name: "Library", value: ATTR_LIBRARY },
         { name: "Application", value: ATTR_APPLICATION },
-        { name: "Callable API (HTTP or SDK)", value: ATTR_API },
+        { name: "Callable API (HTTP, SDK, CLI)", value: ATTR_API },
         { name: "Infrastructure as Code", value: ATTR_INFRASTRUCTURE },
       ],
     },
@@ -44,7 +41,6 @@ const subject = {
       attributes: [
         { name: "Installed", value: ATTR_INSTALLED },
         { name: "Deployed", value: ATTR_DEPLOYED },
-        { name: "Called Remotely/Hosted", value: ATTR_CALLED },
       ],
     },
   ],
@@ -89,7 +85,6 @@ const subject = {
           },
         },
         {
-          // TODO move this to a bottom section?
           name: "License",
           detail: {
             purpose: "Describe the license under which this software is distributed.",
@@ -98,22 +93,11 @@ const subject = {
           },
         },
         {
-          // TODO move this to a bottom section?
           name: "Change Log",
           detail: {
             purpose: "Provide a list of changes for each release.",
             instructions: "REPLACE ME with a list of changes for each release.",
             document: DOC_CHANGELOG,
-          },
-        },
-        {
-          // TODO move this to a bottom section?
-          name: "Roadmap",
-          detail: {
-            purpose: "Describe the direction this software will be developed in.",
-            instructions: "REPLACE ME with a roadmap showing what is coming. Also include information about what will not be coming or added to this software.",
-            document: DOC_ROADMAP,
-            attributes: [ATTR_EXTERNAL],
           },
         },
       ],
@@ -232,10 +216,9 @@ const subject = {
         {
           name: "Roadmap",
           detail: {
-            purpose: "Describe the future plans and direction for this software.",
-            instructions: "REPLACE ME with a list of future features and/or a link to the roadmap.",
-            document: DOC_README,
-            section: "Repo Name",
+            purpose: "Describe the direction this software will be developed in.",
+            instructions: "REPLACE ME with a roadmap showing what is coming (or provide a link).",
+            document: DOC_ROADMAP,
             attributes: [ATTR_EXTERNAL],
           },
         },
@@ -255,20 +238,10 @@ const subject = {
           },
         },
         {
-          name: "Download Instructions",
-          detail: {
-            purpose: "Let the person know how to download this software.",
-            instructions: "REPLACE ME with instructions of how to download this software, along with a link.",
-            document: DOC_README,
-            section: "Repo Name#Using",
-            attributes: [ATTR_INSTALLED],
-          },
-        },
-        {
           name: "Installation Instructions",
           detail: {
-            purpose: "Let the person know how to install this software.",
-            instructions: "REPLACE ME with instructions of how to install this software.",
+            purpose: "Let the person know how to download and install this software.",
+            instructions: "REPLACE ME with instructions of how to download and install this software.",
             document: DOC_README,
             section: "Repo Name#Using",
             attributes: [ATTR_INSTALLED],
@@ -281,7 +254,7 @@ const subject = {
             instructions: "REPLACE ME with a list of instructions on how to deploy this software (or provide a link).",
             document: DOC_README,
             section: "Repo Name#Using",
-            attributes: [ATTR_EXTERNAL],
+            attributes: [ATTR_EXTERNAL, ATTR_DEPLOYED],
           },
         },
         {
@@ -473,7 +446,7 @@ const subject = {
               name: "Overview",
               detail: {
                 purpose: "Describe the testing philosophy, what types of tests exist, and how to manage tests.",
-                instructions: "REPLACE ME with a description on the overall testing philosophy, including what types of tests exist, what they intent to test, and how to manage tests",
+                instructions: "REPLACE ME with a description on the overall testing philosophy, including what types of tests exist, what they intend to test, and how to manage tests",
                 document: DOC_README,
                 section: "Repo Name#Testing",
               },
@@ -595,7 +568,7 @@ const subject = {
             instructions: "REPLACE ME with a description of how this software is monitored. Include a link to the monitoring software if possible.",
             document: DOC_README,
             section: "Repo Name#Monitoring",
-            attributes: [ATTR_INTERNAL, ATTR_DEPLOYED],
+            attributes: [ATTR_DEPLOYED],
           },
         },
       ],
@@ -610,7 +583,7 @@ const subject = {
             instructions: "REPLACE ME with a list or link to the owner(s)/maintainer(s) of this repository.",
             document: DOC_README,
             section: "Repo Name#Owner",
-            attributes: [ATTR_INTERNAL],
+            attributes: [],
           },
         },
         {

@@ -51,7 +51,7 @@ export default function Home({
           <h1 className="text-5xl font-bold text-gray-900">Documentation Planner</h1>
         </div>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          An opinionated superset of documentation that could be included when documenting a particular subject.
+          Identify what to document for your software product team.
         </p>
       </div>
 
