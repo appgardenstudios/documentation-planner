@@ -1,7 +1,7 @@
 # Documentation Planner
 A collection of items to consider documenting for a range of subjects encountered by software product engineering teams and organizations.
 
-<img src="./img/readme-home.png" width="320px"> <img src="./img/readme-repository.png" width="320px">
+<img src="./img/readme-home.png" width="480px"> <img src="./img/readme-repository.png" width="480px">
 
 The philosophy behind this tool is to provide a superset of items that should be considered for inclusion into the documentation for certain subjects. It is not intended that every subject should contain every item.
 
