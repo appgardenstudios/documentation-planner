@@ -39,10 +39,10 @@ import team from './team.js';
  * @typedef {object} Detail
  * @property {string} purpose - The purpose of this item
  * @property {string} instructions - Instructions on how to complete this item
- * @property {string} [usage] - Notes about the usage
- * @property {Array<string>} [attributes] - Attributes this item is applicable to (must match all)
+ * @property {string} [guidance] - Guidance about this item
  * @property {Array<Example>} [examples] - Examples
  * @property {Array<string>} [references] - References (urls)
+ * @property {Array<string>} [attributes] - Attributes this item is applicable to (must match all)
  * @property {string} document - The document this item should belong to
  * @property {string} [section] - The section this item should belong to. Sections are "#" separated for hierarchy (e.g. "Architecture#Overview")
  */
@@ -50,7 +50,13 @@ import team from './team.js';
 /**
  * @typedef {object} Example
  * @property {string} example - The example
- * @property {string} [reference] - The reference (url)
+ * @property {Reference} [reference] - The reference
+ */
+
+/**
+ * @typedef {object} Reference
+ * @property {string} text - The reference
+ * @property {string} [link] - A link to the reference
  * @property {string} [retrieved] - The date retrieved
  */
 

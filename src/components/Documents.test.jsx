@@ -26,7 +26,6 @@ const mockSubject = {
           detail: {
             purpose: 'Test',
             instructions: 'Add description here',
-            usage: 'This should be concise',
             document: 'README',
             section: 'Repo Name'
           }

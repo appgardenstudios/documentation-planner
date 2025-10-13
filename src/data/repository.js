@@ -60,8 +60,30 @@ const subject = {
         {
           name: "One Liner",
           detail: {
-            purpose: "Describe the purpose of this repository in on or two sentences in a tagline format.",
-            instructions: "REPLACE ME with a one-line description or tagline of what the software in this repository is.",
+            purpose: "Provide a concise, compelling, and informative explanation of that this software is, who it is for, and what value it provides.",
+            instructions: "REPLACE ME with a 1-2 sentence description of what the software is, who it is for, and what value it provides.",
+            guidance: `
+            TODO
+            `,
+            examples: [
+              {
+                example: "esbuild: An extremely fast bundler for the web.",
+                reference: {text: "https://github.com/evanw/esbuild", link: "https://github.com/evanw/esbuild", retrieved: "2025-10-13",},
+              },
+              {
+                example: "Godot Engine is a feature-packed, cross-platform game engine to create 2D and 3D games from a unified interface.",
+                reference: {text: "https://github.com/godotengine/godot", link: "https://github.com/godotengine/godot", retrieved: "2025-10-13",},
+              },
+              {
+                example: "Prettier is an opinionated code formatter. It enforces a consistent style by parsing your code and re-printing it with its own rules that take the maximum line length into account, wrapping code when necessary.",
+                reference: {text: "https://github.com/prettier/prettier", link: "https://github.com/prettier/prettier", retrieved: "2025-10-13",},
+              },
+            ],
+            references: [
+              {text: "1", link: "https://skerritt.blog/make-popular-open-source-projects/#slogan-description-of-your-project-in-1-simple-line", retrieved: "2025-10-13",},
+              {text: "2", link: "https://storybrand.com/", retrieved: "2025-10-13",},
+              {text: "2", link: "https://www.creativeo.co/post/storybrand-one-liner-examples", retrieved: "2025-10-13",},
+            ],
             document: DOC_README,
             section: "Repo Name",
           }
@@ -272,7 +294,7 @@ const subject = {
           detail: {
             purpose: "Let the person know how they can get support.",
             instructions: "REPLACE ME with a description of how to get support or file a ticket. Also provide one or more links.",
-            usage: "For open source repositories this will probably be a link to the repository issues along with some basic instructions. For commercial software this will probably be a link to customer support/success.",
+            // guidance: "For open source repositories this will probably be a link to the repository issues along with some basic instructions. For commercial software this will probably be a link to customer support/success.",
             document: DOC_README,
             section: "Repo Name#Using",
             attributes: [ATTR_EXTERNAL],
@@ -433,11 +455,11 @@ const subject = {
               detail: {
                 purpose: "Provide the information needed to understand how to create and run tests.",
                 instructions: "REPLACE ME with a one-liner describing how testing works.",
-                examples: [
-                  {
-                    example: "Unit and e2e tests are run on each PR, and a full manual regression is done on each RC prior to deployment",
-                  }
-                ],
+                // examples: [
+                //   {
+                //     example: "Unit and e2e tests are run on each PR, and a full manual regression is done on each RC prior to deployment",
+                //   }
+                // ],
                 document: DOC_README,
                 section: "Repo Name#Testing",
               },

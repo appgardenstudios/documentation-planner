@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { getDocuments } from '../utils/documentUtils';
+import Information from './Information';
 
 /**
  * Component for rendering a single documentation item
@@ -10,13 +11,23 @@ import { getDocuments } from '../utils/documentUtils';
  * @param {DocumentItem} props.item - Item to document
  */
 function DocumentItem({ item }) {
+  const [showDialog, setShowDialog] = useState(false);
+
+
   return (
     <div className="mb-4 relative">
       <div className="border-2 border-dashed border-gray-300 rounded p-4 relative">
         <div className="absolute -top-3 left-2 bg-white px-2 text-xs text-gray-500 flex items-center h-5">
           {item.path}
         </div>
-
+        {item.detail.guidance && (
+          <>
+            <div className="absolute top-1 right-1 text-xs text-gray-500 cursor-pointer" onClick={() => setShowDialog(true)}>
+              ( i )
+            </div>
+            <Information show={showDialog} onClose={() => setShowDialog(false)} item={item}></Information>
+          </>
+        )}
         <div className="text-sm text-gray-700">
           <div>{item.detail.instructions}</div>
         </div>
