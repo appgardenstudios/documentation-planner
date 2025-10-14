@@ -57,14 +57,36 @@ export default function Information({ show, onClose, item }) {
             <>
               <h2 className="text-lg font-bold text-gray-900 mt-4 mb-1">Examples</h2>
               <div className="pl-3">
-                {item.detail.examples.map((example) => (
-                  <p className="mb-4">
+                {item.detail.examples.map((example, idx) => (
+                  <p key={idx} className="mb-4">
                     {example.example}
                     {example.reference && (
-                      <sup><a href={example.reference.link}>TODO arrow</a></sup>
+                      <sup><a
+                        href={example.reference.link}
+                        className="underline"
+                        target="_blank"
+                        rel="noopener"
+                      >TODO arrow</a></sup>
                     )}
                   </p>
                 ))}
+              </div>
+            </>
+          )}
+          {item.detail.references && (
+            <>
+              <h2 className="text-lg font-bold text-gray-900 mt-4 mb-1">References</h2>
+              <div className="pl-3">
+                <ul className="list-disc list-inside pl-4">
+                {item.detail.references.map((reference, idx) => (
+                  <li key={idx}><a
+                    className="underline"
+                    href={reference.link}
+                    target="_blank"
+                    rel="noopener"
+                  >{reference.text}</a></li>
+                ))}
+                </ul>
               </div>
             </>
           )}

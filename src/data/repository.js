@@ -95,9 +95,9 @@ Whatever formula or process you follow, try and follow these key principles. The
               },
             ],
             references: [
-              { text: "1", link: "https://skerritt.blog/make-popular-open-source-projects/#slogan-description-of-your-project-in-1-simple-line", retrieved: "2025-10-13", },
-              { text: "2", link: "https://storybrand.com/", retrieved: "2025-10-13", },
-              { text: "2", link: "https://www.creativeo.co/post/storybrand-one-liner-examples", retrieved: "2025-10-13", },
+              { text: "3 Tips For Making a Popular Open Source Project in 2025 [Ultimate Guide]", link: "https://skerritt.blog/make-popular-open-source-projects/#slogan-description-of-your-project-in-1-simple-line", retrieved: "2025-10-13", },
+              { text: "StoryBrand", link: "https://storybrand.com/", retrieved: "2025-10-13", },
+              { text: "StoryBrand One-Liner Examples: Your Ultimate Guide to Crafting and Implementing Clear, Compelling One-Liners", link: "https://www.creativeo.co/post/storybrand-one-liner-examples", retrieved: "2025-10-13", },
             ],
             document: DOC_README,
             section: "Repo Name",
