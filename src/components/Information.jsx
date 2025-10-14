@@ -13,7 +13,7 @@ export default function Information({ show, onClose, item }) {
   useEffect(() => {
     if (dialogRef.current) {
       if (show) {
-        dialogRef.current.showModal(); // For a modal dialog
+        dialogRef.current.showModal();
       } else {
         dialogRef.current.close();
       }
