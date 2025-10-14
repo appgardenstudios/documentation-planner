@@ -22,9 +22,9 @@ function DocumentItem({ item }) {
         </div>
         {item.detail.guidance && (
           <>
-            <div className="absolute top-1 right-1 text-xs text-gray-500 cursor-pointer" onClick={() => setShowDialog(true)}>
+            <button type="link" className="absolute top-1 right-1 text-xs text-gray-500 cursor-pointer" onClick={() => setShowDialog(true)}>
               ( i )
-            </div>
+            </button>
             <Information show={showDialog} onClose={() => setShowDialog(false)} item={item}></Information>
           </>
         )}

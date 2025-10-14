@@ -23,13 +23,13 @@ export default function Information({ show, onClose, item }) {
   }, [show]);
 
   return (
-    <dialog ref={dialogRef} onClose={onClose} className="mx-auto max-w-prose rounded-lg">
-      <div className="border border-gray-200 rounded-lg bg-white">
-        <div className="flex justify-between items-center px-4 pr-0 bg-gray-50 border-b border-gray-200">
+    <dialog ref={dialogRef} onClose={onClose} className="m-auto max-w-prose h-full max-h-[calc(100dvh-64px)] rounded-lg">
+      <div className="flex flex-col h-full border border-gray-200 rounded-lg bg-white">
+        <div className="flex justify-between items-center pl-4 pr-1 py-1 bg-gray-50 border-b border-gray-200">
           <span>{item.path}</span>
-          <button autoFocus type="button" onClick={() => onClose()} className="py-2 px-4 cursor-pointer">X</button>
+          <button autoFocus type="button" onClick={onClose} className="py-2 px-4 cursor-pointer">X</button>
         </div>
-        <div className="py-2 px-4">
+        <div className="py-2 px-4 h-full overflow-y-auto">
           <h2 className="text-lg font-bold text-gray-900 mb-1">Purpose</h2>
           <div className="pl-3">{item.detail.purpose}</div>
           <h2 className="text-lg font-bold text-gray-900 mt-4 mb-1">Instructions</h2>
