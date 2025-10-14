@@ -60,7 +60,7 @@ const subject = {
         {
           name: "One Liner",
           detail: {
-            purpose: "Provide a concise, compelling, and informative explanation of that this software is, who it is for, and what value it provides.",
+            purpose: "Provide a concise, compelling, and informative explanation of what this software is, who it is for, and what value it provides.",
             instructions: "REPLACE ME with a 1-2 sentence description of what the software is or does, who it is for, and what value it provides.",
             guidance: `
 The one liner is more likely to be read than any other sentence in a README or project, so it has a lot of work to do. It needs to convey who this project is for, what it does, and why they should care. It has to be short enough to be read in a few seconds, but contain enough information to answer the questions being asked by the reader.
