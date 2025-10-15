@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { getDocuments } from '../utils/documentUtils';
 import Information from './Information';
+import InfoIcon from '../assets/images/icons/info.svg?react';
 
 /**
  * Component for rendering a single documentation item
@@ -22,8 +23,8 @@ function DocumentItem({ item }) {
         </div>
         {item.detail.guidance && (
           <>
-            <button type="link" className="absolute top-1 right-1 text-xs text-gray-500 cursor-pointer" onClick={() => setShowDialog(true)}>
-              ( i )
+            <button type="link" className="absolute top-1 right-1 text-gray-400 cursor-pointer hover:text-blue-600 transition-colors" onClick={() => setShowDialog(true)} aria-label={`Info for ${item.path}`}>
+              <InfoIcon className="h-4 w-4" />
             </button>
             <Information show={showDialog} onClose={() => setShowDialog(false)} item={item}></Information>
           </>
