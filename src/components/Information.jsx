@@ -25,15 +25,15 @@ export default function Information({ show, onClose, item }) {
   }, [show]);
 
   return (
-    <dialog ref={dialogRef} onClose={onClose} className="m-auto max-w-prose h-full max-h-[calc(100dvh-64px)] rounded-lg shadow-xl">
-      <div className="flex flex-col h-full border border-gray-200 rounded-lg bg-white">
+    <dialog ref={dialogRef} onClose={onClose} className="m-auto max-w-prose rounded-lg shadow-xl">
+      <div className="flex flex-col max-h-[calc(100dvh-64px)] border border-gray-200 rounded-lg bg-white">
         <div className="flex justify-between items-center pl-6 pr-3 py-3 bg-gray-50 border-b border-gray-200">
           <h2>{item.path}</h2>
           <button autoFocus type="button" onClick={onClose} className="cursor-pointer" aria-label="Close information dialog">
             <CloseIcon className="h-5 w-5" />
           </button>
         </div>
-        <div className="pt-4 pb-6 px-6 h-full overflow-y-auto">
+        <div className="pt-4 pb-6 px-6 overflow-y-auto">
           <h3 className="text-lg font-bold mb-1">Purpose</h3>
           <div>{item.detail.purpose}</div>
           <h3 className="text-lg font-bold mt-4 mb-1">Instructions</h3>
