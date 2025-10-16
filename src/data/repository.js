@@ -45,13 +45,13 @@ const subject = {
     },
   ],
   documents: [
-    {name: DOC_README},
-    {name: DOC_ARCHITECTURE},
-    {name: DOC_CHANGELOG},
-    {name: DOC_ROADMAP},
-    {name: DOC_CONTRIBUTING},
-    {name: DOC_CODE_OF_CONDUCT},
-    {name: DOC_LICENSE},
+    { name: DOC_README },
+    { name: DOC_ARCHITECTURE },
+    { name: DOC_CHANGELOG },
+    { name: DOC_ROADMAP },
+    { name: DOC_CONTRIBUTING },
+    { name: DOC_CODE_OF_CONDUCT },
+    { name: DOC_LICENSE },
   ],
   items: [
     {
@@ -60,8 +60,41 @@ const subject = {
         {
           name: "One Liner",
           detail: {
-            purpose: "Describe the purpose of this repository in on or two sentences in a tagline format.",
-            instructions: "REPLACE ME with a one-line description or tagline of what the software in this repository is.",
+            purpose: "Provide a concise, compelling, and informative explanation of what this software is, who it is for, and what value it provides.",
+            instructions: "REPLACE ME with a 1-2 sentence description of what the software is or does, who it is for, and what value it provides.",
+            guidance: `
+The one liner is more likely to be read than any other sentence in a README or project, so it has a lot of work to do. It needs to convey who this project is for, what it does, and why they should care. It has to be short enough to be read in a few seconds, but contain enough information to answer the questions being asked by the reader.
+
+There are several ways to craft a good one liner, but here are some formulas you can use:
+- **StoryBrand formula**: Create 1-2 sentences that describe the problem the user has, states that this software is a solution to that problem, and paints a picture of what their experience will be after using this software. *User has problem, software solves problem, user experiences result*.
+- **What it is + What it does**: A very simple statement describing what it is and what it does. *Software is a(n) X that Y*.
+- **Purpose + Problem**: A simple description of the purpose of this software combined with the problem it solves. *Software is a(n) X for user to solve Y*.
+- **Description + Result**: A description of the software combined with one or more resulting benefits. *Software, a(n) X, provides Y*.
+
+Whatever formula or process you follow, try and follow these key principles. The one liner should:
+- Answer the questions of who it is for, what it does, and why they should care. Everything else can come later.
+- Be clear and simple. Avoid excessive jargon or flowery language. Get right to the point and stay there.
+- Be memorable and distinct. Focus on what sets this software apart from all others. Say it in a way that will resonate.
+            `,
+            examples: [
+              {
+                example: "esbuild: An extremely fast bundler for the web.",
+                reference: { text: "esbuild", link: "https://github.com/evanw/esbuild", retrieved: "2025-10-13", },
+              },
+              {
+                example: "Godot Engine is a feature-packed, cross-platform game engine to create 2D and 3D games from a unified interface.",
+                reference: { text: "Godot Engine", link: "https://github.com/godotengine/godot", retrieved: "2025-10-13", },
+              },
+              {
+                example: "Prettier is an opinionated code formatter. It enforces a consistent style by parsing your code and re-printing it with its own rules that take the maximum line length into account, wrapping code when necessary.",
+                reference: { text: "Prettier", link: "https://github.com/prettier/prettier", retrieved: "2025-10-13", },
+              },
+            ],
+            references: [
+              { text: "3 Tips For Making a Popular Open Source Project in 2025 [Ultimate Guide]", link: "https://skerritt.blog/make-popular-open-source-projects/#slogan-description-of-your-project-in-1-simple-line", retrieved: "2025-10-13", },
+              { text: "StoryBrand", link: "https://storybrand.com/", retrieved: "2025-10-13", },
+              { text: "StoryBrand One-Liner Examples: Your Ultimate Guide to Crafting and Implementing Clear, Compelling One-Liners", link: "https://www.creativeo.co/post/storybrand-one-liner-examples", retrieved: "2025-10-13", },
+            ],
             document: DOC_README,
             section: "Repo Name",
           }
@@ -145,6 +178,15 @@ const subject = {
               },
             },
           ],
+        },
+        {
+          name: "Logo",
+          detail: {
+            purpose: "Provide a visual icon to remember the project by.",
+            instructions: "REPLACE ME with a logo for the software in the project.",
+            document: DOC_README,
+            attributes: [ATTR_EXTERNAL],
+          },
         },
         {
           name: "Benefits",
@@ -272,7 +314,7 @@ const subject = {
           detail: {
             purpose: "Let the person know how they can get support.",
             instructions: "REPLACE ME with a description of how to get support or file a ticket. Also provide one or more links.",
-            usage: "For open source repositories this will probably be a link to the repository issues along with some basic instructions. For commercial software this will probably be a link to customer support/success.",
+            // guidance: "For open source repositories this will probably be a link to the repository issues along with some basic instructions. For commercial software this will probably be a link to customer support/success.",
             document: DOC_README,
             section: "Repo Name#Using",
             attributes: [ATTR_EXTERNAL],
@@ -433,11 +475,11 @@ const subject = {
               detail: {
                 purpose: "Provide the information needed to understand how to create and run tests.",
                 instructions: "REPLACE ME with a one-liner describing how testing works.",
-                examples: [
-                  {
-                    example: "Unit and e2e tests are run on each PR, and a full manual regression is done on each RC prior to deployment",
-                  }
-                ],
+                // examples: [
+                //   {
+                //     example: "Unit and e2e tests are run on each PR, and a full manual regression is done on each RC prior to deployment",
+                //   }
+                // ],
                 document: DOC_README,
                 section: "Repo Name#Testing",
               },
